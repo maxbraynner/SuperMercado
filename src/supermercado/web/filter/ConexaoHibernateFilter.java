@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.classic.Session;
 
 import supermercado.util.HibernateUtil;
 
@@ -25,12 +27,17 @@ public class ConexaoHibernateFilter implements Filter {
 			FilterChain filterChain)
 			throws IOException, ServletException {
 		try {
-			this.sessionFactory.getCurrentSession().beginTransaction();
+			// recupera sessão
+			Transaction transaction = this.sessionFactory.getCurrentSession().beginTransaction();
+			
+			// executa o request
 			filterChain.doFilter(servletRequest, servletResponse);
-			this.sessionFactory.getCurrentSession().getTransaction().commit();
-			this.sessionFactory.getCurrentSession().close();
+			
+			// efetiva a transação
+			transaction.commit();
 		} catch (Throwable ex) {
 			try {
+				// caso ocorra erro efetua o rollback
 				if (this.sessionFactory.getCurrentSession().getTransaction().isActive()) {
 					this.sessionFactory.getCurrentSession().getTransaction().rollback();
 				}
@@ -38,6 +45,8 @@ public class ConexaoHibernateFilter implements Filter {
 				t.printStackTrace();
 			}
 			throw new ServletException();
+		}finally {
+			this.sessionFactory.getCurrentSession().close();
 		}
 		
 	}
