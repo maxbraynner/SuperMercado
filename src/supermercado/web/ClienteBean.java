@@ -13,8 +13,11 @@ public class ClienteBean {
 	private Cliente cliente = new Cliente();
 	private Endereco endereco = new Endereco();
 	
-	public void salvar() {
+	public void salvar() throws InstantiationException, IllegalAccessException {
 		ClienteRN clienteRN = new ClienteRN();
+		
+		cliente.setEndereco(endereco);
+		
 		clienteRN.salvar(cliente);
 	}
 	
@@ -25,4 +28,14 @@ public class ClienteBean {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	
 }
