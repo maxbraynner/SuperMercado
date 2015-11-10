@@ -1,10 +1,19 @@
 package supermercado.cliente;
 
-import java.util.List;
+import org.hibernate.Session;
 
-public interface ClienteDAO {
-	public void salvar(Cliente cliente);
-	public void excluir(Cliente cliente);
-	public Cliente carregar(Integer codigo);
-	public List<Cliente> listar();
+import supermercado.dao.DaoGeneric;
+
+/**
+ * Classe responsável por consultas referentes ao Cliente 
+ */
+public class ClienteDAO extends DaoGeneric<Cliente> {
+	
+	public ClienteDAO(Session session) {
+		super(session);
+	}
+	
+	public ClienteDAO() {
+		super();
+	}
 }
