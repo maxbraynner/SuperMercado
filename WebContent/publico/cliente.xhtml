@@ -66,31 +66,31 @@
 				
 				<h:panelGrid columns="2">
 					<h:outputLabel value="CEP:" for="cep"/>
-					<h:inputText id="cep" label="CEP" value="#{clienteBean.cliente.endereco.cep}"
+					<h:inputText id="cep" label="CEP" value="#{clienteBean.endereco.cep}"
 						required="true" size="10" maxlength="10"/>
 				
 					<h:outputLabel value="Logradouro:" for="logradouro" />
-					<h:inputText id="logradouro" label="Logradouro" value="#{clienteBean.cliente.endereco.logradouro}"
+					<h:inputText id="logradouro" label="Logradouro" value="#{clienteBean.endereco.logradouro}"
 						required="true" maxlength="120" />
 				
 					<h:outputLabel value="Número: " for="numero" />
-					<h:inputText id="numero" label="Número" value="#{clienteBean.cliente.endereco.numero}"
+					<h:inputText id="numero" label="Número" value="#{clienteBean.endereco.numero}"
 						required="true" size="10" maxlength="10" />
 					
 					<h:outputLabel value="Bairro:" for="bairro"/>
-					<h:inputText id="bairro" label="Bairro" value="#{clienteBean.cliente.endereco.bairro}"
+					<h:inputText id="bairro" label="Bairro" value="#{clienteBean.endereco.bairro}"
 						required="true"/>
 					
 					<h:outputLabel value="Cidade:" for="cidade"/>
-					<h:inputText id="cidade" label="Cidade" value="#{clienteBean.cliente.endereco.cidade}"
+					<h:inputText id="cidade" label="Cidade" value="#{clienteBean.endereco.cidade}"
 						required="true"/>
 						
 					<h:outputLabel value="Estado:" for="estado"/>
-					<h:inputText id="estado" label="Cidade" value="#{clienteBean.cliente.endereco.uf}"
+					<h:inputText id="estado" label="Cidade" value="#{clienteBean.endereco.uf}"
 						required="true"/>
 						
 					<h:outputLabel value="Complemento:" for="complemento"/>
-					<h:inputText id="complemento" label="Complemento" value="#{clienteBean.cliente.endereco.complemento}"
+					<h:inputText id="complemento" label="Complemento" value="#{clienteBean.endereco.complemento}"
 						size="100" quired="false"/>
 				</h:panelGrid>
 				</fieldset>
