@@ -1,5 +1,19 @@
 package br.com.dao;
 
-public interface EnderecoDAO {
+import org.hibernate.Session;
 
+import br.com.model.Endereco;
+
+/**
+ * Classe responsável por acesso a entidade Endereço 
+ */
+public class EnderecoDAO extends DaoGeneric<Endereco> {
+	
+	public EnderecoDAO(Session session) {
+		super(session);
+	}
+	
+	public EnderecoDAO() {
+		super();
+	}
 }

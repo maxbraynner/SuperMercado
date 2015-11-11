@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import br.com.model.Cliente;
 
 /**
- * Classe responsável por consultas referentes ao Cliente 
+ * Classe responsável por acesso a entidade Cliente 
  */
 public class ClienteDAO extends DaoGeneric<Cliente> {
 	

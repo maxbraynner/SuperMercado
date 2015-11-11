@@ -6,6 +6,10 @@ import org.hibernate.Session;
 
 import br.com.util.HibernateUtil;
 
+/**
+ * Classe de acesso básico para qualquer entidade 
+ * @param <T>
+ */
 public class DaoGeneric<T> implements Dao<T> {
 	private Session session;
 	
