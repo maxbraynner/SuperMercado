@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,10 +36,10 @@ public class Fornecedor implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = false)
 	private String telefone;
 
-	@OneToMany(mappedBy = "fornecedor", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "fornecedor", fetch = FetchType.LAZY)
 	private Set<Produto> produtos = new HashSet<Produto>();
 
 	public String getNome() {

@@ -1,5 +1,7 @@
 package br.com.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import br.com.model.Fornecedor;
@@ -16,4 +18,5 @@ public class FornecedorDAO extends DaoGeneric<Fornecedor> {
 	public FornecedorDAO() {
 		super();
 	}
+	
 }
