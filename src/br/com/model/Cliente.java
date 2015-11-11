@@ -18,6 +18,8 @@ public class Cliente extends Pessoa {
 	
 	private String matricula;
 
+	private boolean ativo;
+	
 	// Compras que o cliente realizou
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
 	private Set<Venda> compras = new HashSet<Venda>(0);
@@ -36,5 +38,13 @@ public class Cliente extends Pessoa {
 
 	public void setCompras(Set<Venda> compras) {
 		this.compras = compras;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 }

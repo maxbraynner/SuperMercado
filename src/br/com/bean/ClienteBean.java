@@ -1,5 +1,7 @@
 package br.com.bean;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -12,11 +14,45 @@ import br.com.regranegocio.ClienteRN;
 public class ClienteBean {
 	private Cliente cliente = new Cliente();
 	private Endereco endereco = new Endereco();
+	private List<Cliente> listaClientes;
 	
-	public void salvar() throws InstantiationException, IllegalAccessException {
+	// Salva um cliente no banco
+	public String salvar() throws InstantiationException, IllegalAccessException {
 		ClienteRN clienteRN = new ClienteRN();
 		
+		// Cliente quando é cadastrado está automaticamente ativo no sistema
+		cliente.setAtivo(true);
 		cliente.setEndereco(endereco);
+		
+		clienteRN.salvar(cliente);
+		return "/cliente/listagemCliente?faces-redirect=true";
+	}
+	
+	// Edição de cliente
+	public String editar() {
+		// O endereço é novamente instanciado para possibilitar a exibição em tela
+		this.setEndereco(getCliente().getEndereco());
+		
+		return "/cliente/cadastroCliente?faces-redirect=true";
+		
+	}
+	
+	// Exclusão do cliente
+	public void excluir() throws InstantiationException, IllegalAccessException {
+		ClienteRN clienteRN = new ClienteRN();
+		clienteRN.excluir(cliente);
+		this.listaClientes = null;
+	}
+	
+	// Ativação OU inativação de um cliente
+	public void ativar() throws InstantiationException, IllegalAccessException {
+		ClienteRN clienteRN = new ClienteRN();
+		
+		if (cliente.isAtivo()) {
+			cliente.setAtivo(false);
+		} else {
+			cliente.setAtivo(true);
+		}
 		
 		clienteRN.salvar(cliente);
 	}
@@ -37,5 +73,13 @@ public class ClienteBean {
 		this.endereco = endereco;
 	}
 	
-	
+	// Lista de todos os clientes cadastrados
+	public List<Cliente> getListaClientes() throws InstantiationException, IllegalAccessException {
+		if (this.listaClientes == null) {
+			ClienteRN clienteRN = new ClienteRN();
+			this.listaClientes = clienteRN.listar();
+		}
+		return this.listaClientes;
+	}
+
 }

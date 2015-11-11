@@ -45,7 +45,7 @@ public abstract class Pessoa implements Serializable {
 	@NaturalId
 	private String cpf;
 	
-	@Cascade(CascadeType.SAVE_UPDATE)
+	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.DELETE })
 	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	@org.hibernate.annotations.ForeignKey(name = "fk_pessoa_endereco")
