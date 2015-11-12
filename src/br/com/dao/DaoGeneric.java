@@ -35,7 +35,7 @@ public class DaoGeneric<T> implements Dao<T> {
 	}
 
 	@Override
-	public T consultarPorID(Long id) {
+	public T consultarPorID(Integer id) {
 		return (T) this.session.get(clas, id);
 	}
 
