@@ -62,19 +62,6 @@ public class FuncionarioBean {
 		return this.listaFuncionarios;
 	}
 
-	
-	// Ativação OU inativação de um cliente
-		public void ativar() throws InstantiationException, IllegalAccessException {
-			FuncionarioRN funcionarioRN = new FuncionarioRN();
-			
-			if (funcionario.isAtivo()) {
-				funcionario.setAtivo(false);
-			} else {
-				funcionario.setAtivo(true);
-			}
-			
-			funcionarioRN.salvar(funcionario);
-		}
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}

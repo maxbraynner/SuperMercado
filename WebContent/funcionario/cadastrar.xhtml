@@ -27,12 +27,12 @@
 					</p:inputText>
 
 					<p:outputLabel value="CPF:" for="cpf" />
-					<p:inputText id="cpf" label="CPF"
+					<p:inputMask id="cpf" label="CPF" mask="999.999.999-99"
 						value="#{funcionarioBean.funcionario.cpf}" size="20"
 						maxlength="30" required="true"
 						requiredMessage="Funcionario deve possuir um CPF associado">
 						<f:validateLength minimum="1" maximum="30" />
-					</p:inputText>
+					</p:inputMask>
 
 					<p:outputLabel value="Nome:" for="nome" />
 					<p:inputText id="nome" label="Nome"
@@ -107,15 +107,15 @@
 				</h:panelGrid>
 			</p:fieldset>
 
-			<!-- Cadastro cardo -->
+			<!-- Cadastro cargo -->
 			<p:fieldset legend="Cargo">
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Data de Contratação:" for="dataContratacao" />
-					<p:inputText id="dataContratacao" label="Contratacao"
+					<p:inputMask id="dataContratacao" label="Contratacao" mask="99/99/9999"
 						value="#{funcionarioBean.cargo.dataContratacao}" required="true"
 						size="25" maxlength="25">
 						<f:convertDateTime dateStyle="medium" />
-					</p:inputText>
+					</p:inputMask>
 
 
 					<p:outputLabel value="Nome:" for="nomeCargo" />
