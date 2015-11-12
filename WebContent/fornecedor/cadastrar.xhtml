@@ -13,6 +13,8 @@
 
 	<ui:define name="conteudo">
 		<h:form id="cadastro">
+			<h:inputHidden value="#{fornecedorBean.fornecedor.id}" />
+
 			<p:messages id="messages" />
 			<p:fieldset legend="Dados Fornecedor">
 				<h:panelGrid columns="2">
@@ -45,7 +47,8 @@
 
 			<br />
 			<p:commandButton value="Resetar" type="reset" />
-			<p:commandButton value="Confirmar" action="#{fornecedorBean.salvar}" />
+			<p:commandButton value="Confirmar"
+				actionListener="#{fornecedorBean.salvar}" />
 		</h:form>
 	</ui:define>
 </ui:composition>
