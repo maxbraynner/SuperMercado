@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro Fornecedor</title>
-</h:head>
-<h:body>
-	<h:form id="cadastro">
-		<p:dataTable var="fornecedor" value="#{fornecedorBean.listFornecedor}"
-			emptyMessage="não há fornecedor cadastrado"
-			filteredValue="#{fornecedorBean.fornecedoresFiltrados}"
-			paginator="true"
-			rows="20">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
 
-			<f:facet name="header">
-				<h:outputText value="Listagem de Fornecedores"/>
-			</f:facet>
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<h:form id="cadastro">
+			<p:dataTable var="fornecedor"
+				value="#{fornecedorBean.listFornecedor}"
+				emptyMessage="não há fornecedor cadastrado"
+				filteredValue="#{fornecedorBean.fornecedoresFiltrados}"
+				paginator="true" rows="20">
 
-			<p:column filterBy="#{fornecedor.id}" headerText="Id" sortBy="#{fornecedor.id}">
-				<h:outputText value="#{fornecedor.id}" />
-			</p:column>
+				<f:facet name="header">
+					<h:outputText value="Listagem de Fornecedores" />
+				</f:facet>
 
-			<p:column filterBy="#{fornecedor.nome}" sortBy="#{fornecedor.nome}" headerText="Nome">				
-				<h:outputText value="#{fornecedor.nome}" />
-			</p:column>
-			
-			<p:column filterBy="#{fornecedor.email}" sortBy="#{fornecedor.email}" headerText="E-Mail">				
-				<h:outputText value="#{fornecedor.email}" />
-			</p:column>
-			
-			<p:column filterBy="#{fornecedor.CNPJ}" sortBy="#{fornecedor.CNPJ}" headerText="CNPJ">				
-				<h:outputText value="#{fornecedor.CNPJ}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-</h:body>
-</html>
+				<p:column filterBy="#{fornecedor.id}" headerText="Id"
+					sortBy="#{fornecedor.id}">
+					<h:outputText value="#{fornecedor.id}" />
+				</p:column>
+
+				<p:column filterBy="#{fornecedor.nome}" sortBy="#{fornecedor.nome}"
+					headerText="Nome">
+					<h:outputText value="#{fornecedor.nome}" />
+				</p:column>
+
+				<p:column filterBy="#{fornecedor.email}"
+					sortBy="#{fornecedor.email}" headerText="E-Mail">
+					<h:outputText value="#{fornecedor.email}" />
+				</p:column>
+
+				<p:column filterBy="#{fornecedor.telefone}"
+					sortBy="#{fornecedor.telefone}" headerText="Telefone">
+					<h:outputText value="#{fornecedor.telefone}" />
+				</p:column>
+
+				<p:column filterBy="#{fornecedor.CNPJ}" sortBy="#{fornecedor.CNPJ}"
+					headerText="CNPJ">
+					<h:outputText value="#{fornecedor.CNPJ}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

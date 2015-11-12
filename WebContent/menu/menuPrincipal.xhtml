@@ -6,17 +6,18 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:menubar>
-		<p:submenu label="Cadastrar">
-			<p:menuitem value="Funcionario" url="/funcionario/cadastrar.jsf" />
-			<p:menuitem value="Fornecedor" url="/fornecedor/cadastrar.jsf" />
-			<p:menuitem value="Cliente" url="/cliente/cadastroCliente.jsf" />
-		</p:submenu>
-		
-		<p:submenu label="Listar">
-			<p:menuitem value="Funcionario" url="/funcionario/listar.jsf" />
-			<p:menuitem value="Fornecedor" url="/fornecedor/listar.jsf" />
-		</p:submenu>
-	</p:menubar>
+	<h:form id="menu">
+		<p:menubar>
+			<p:submenu label="Cadastrar" icon="icon-list-alt">
+				<p:menuitem value="Funcionario" url="/funcionario/cadastrar.jsf" />
+				<p:menuitem value="Fornecedor" url="/fornecedor/cadastrar.jsf" />
+				<p:menuitem value="Cliente" url="/cliente/cadastroCliente.jsf" />
+			</p:submenu>
 
+			<p:submenu label="Listar" icon="icon-search">
+				<p:menuitem value="Funcionario" url="/funcionario/listar.jsf" />
+				<p:menuitem value="Fornecedor" url="/fornecedor/listar.jsf" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
 </ui:composition>

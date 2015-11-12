@@ -9,17 +9,15 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Supermercado</title>
-	<h:outputStylesheet library="css" name="stilo.css"/>
+	<h:outputStylesheet library="css" name="stilo.css" />
 </h:head>
 <h:body>
-	<p:layout>
-		<p:layoutUnit position="north">
-			<ui:insert name="menu" />
-		</p:layoutUnit>
-		
-		<p:layoutUnit position="center">
-			<ui:insert name="conteudo" />
-		</p:layoutUnit>
-	</p:layout>
+	<div id="cabecalho">
+		<ui:insert name="menu" />
+	</div>
+
+	<div id="conteudo">
+		<ui:insert name="conteudo" />
+	</div>
 </h:body>
 </html>

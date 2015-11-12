@@ -12,3 +12,8 @@
 .ui-widget,.ui-widget .ui-widget{
 	font-size: 12px !important;
 }
+
+div#cabecalho{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}

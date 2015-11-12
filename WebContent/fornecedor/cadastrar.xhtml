@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro Fornecedor</title>
-</h:head>
-<h:body>
-	<h:form id="cadastro">
-		<p:messages id="messages" />
-		<p:fieldset legend="Dados Fornecedor">
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" required="true"
-					value="#{fornecedorBean.fornecedor.nome}" />
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
 
-				<p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
-				<p:inputText id="nomeFantasia" required="true" size="40"
-					value="#{fornecedorBean.fornecedor.nomeFantasia}" />
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
 
-				<p:outputLabel value="CNPJ" for="cnpj" />
-				<p:inputMask id="cnpj" required="true"
-					value="#{fornecedorBean.fornecedor.CNPJ}" mask="99.999.999/9999-99" />
+	<ui:define name="conteudo">
+		<h:form id="cadastro">
+			<p:messages id="messages" />
+			<p:fieldset legend="Dados Fornecedor">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome" required="true"
+						value="#{fornecedorBean.fornecedor.nome}" />
 
-				<p:outputLabel value="E-Mail" for="email" />
-				<p:inputText id="email" required="true"
-					validatorMessage="E-Mail inválido"
-					value="#{fornecedorBean.fornecedor.email}">
-					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
-					<p:ajax update="messages" event="blur" />
-				</p:inputText>
+					<p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
+					<p:inputText id="nomeFantasia" required="true" size="40"
+						value="#{fornecedorBean.fornecedor.nomeFantasia}" />
 
-				<p:outputLabel value="Telefone" for="telefone" />
-				<p:inputMask id="telefone" required="true"
-					value="#{fornecedorBean.fornecedor.telefone}" mask="(99)9999-9999" />
-			</h:panelGrid>
-		</p:fieldset>
+					<p:outputLabel value="CNPJ" for="cnpj" />
+					<p:inputMask id="cnpj" required="true"
+						value="#{fornecedorBean.fornecedor.CNPJ}"
+						mask="99.999.999/9999-99" />
 
-		<br />
-		<p:commandButton value="Resetar" type="reset" />
-		<p:commandButton value="Confirmar" action="#{fornecedorBean.salvar}" />
-	</h:form>
-</h:body>
-</html>
+					<p:outputLabel value="E-Mail" for="email" />
+					<p:inputText id="email" required="true"
+						validatorMessage="E-Mail inválido"
+						value="#{fornecedorBean.fornecedor.email}">
+						<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
+						<p:ajax update="messages" event="blur" />
+					</p:inputText>
+
+					<p:outputLabel value="Telefone" for="telefone" />
+					<p:inputMask id="telefone" required="true"
+						value="#{fornecedorBean.fornecedor.telefone}" mask="(99)9999-9999" />
+				</h:panelGrid>
+			</p:fieldset>
+
+			<br />
+			<p:commandButton value="Resetar" type="reset" />
+			<p:commandButton value="Confirmar" action="#{fornecedorBean.salvar}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
