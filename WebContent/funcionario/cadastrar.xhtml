@@ -8,74 +8,73 @@
 	template="/templates/templatePrincipal.xhtml">
 
 	<ui:define name="menu">
-		<ui:include src="/menu/manuPrincipal.xhtml" />
+		<ui:include src="/menu/menuPrincipal.xhtml" />
 	</ui:define>
-	
+
 	<ui:define name="conteudo">
-	
-	<h:form id="cadastro">
-		<h:inputHidden value="#{funcionarioBean.funcionario.id}" />
 
-		<fieldset>
-			<legend>Informações do Funcionário</legend>
-			<p:panelGrid columns="2">
-				<p:outputLabel value="Matrícula:" for="matricula" />
-				<p:inputText id="matricula" label="Matrícula"
-					value="#{funcionarioBean.funcionario.matricula}" size="20"
-					maxlength="30" required="true"
-					requiredMessage="Funcionario deve possuir uma matrícula associada">
-					<f:validateLength minimum="1" maximum="30" />
-				</p:inputText>
+		<h:form id="cadastro">
+			<h:inputHidden value="#{funcionarioBean.funcionario.id}" />
 
-				<p:outputLabel value="CPF:" for="cpf" />
-				<p:inputText id="cpf" label="CPF"
-					value="#{funcionarioBean.funcionario.cpf}" size="20" maxlength="30"
-					required="true"
-					requiredMessage="Funcionario deve possuir um CPF associado">
-					<f:validateLength minimum="1" maximum="30" />
-				</p:inputText>
-
-				<p:outputLabel value="Nome:" for="nome" />
-				<p:inputText id="nome" label="Nome"
-					value="#{funcionarioBean.funcionario.nome}" size="30"
-					maxlength="30" required="true" requiredMessage="Você não tem nome?">
-					<f:validateLength minimum="1" maximum="30" />
-				</p:inputText>
-
-				<p:outputLabel value="Sobrenome:" for="sobrenome" />
-				<p:inputText id="sobrenome" label="Sobrenome"
-					value="#{funcionarioBean.funcionario.sobrenome}" size="30"
-					maxlength="30" required="true"
-					requiredMessage="Você não tem sobrenome?">
-					<f:validateLength minimum="1" maximum="30" />
-				</p:inputText>
-
-				<p:outputLabel value="e-Mail:" for="email" />
-				<p:panelGrid>
-					<p:inputText id="email" label="e-Mail"
-						value="#{funcionarioBean.funcionario.email}" size="50"
-						maxlength="50" required="true" validatorMessage="e-mail inválido">
-						<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
+			<p:fieldset legend="Informações do Funcionário">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Matrícula:" for="matricula" />
+					<p:inputText id="matricula" label="Matrícula"
+						value="#{funcionarioBean.funcionario.matricula}" size="20"
+						maxlength="30" required="true"
+						requiredMessage="Funcionario deve possuir uma matrícula associada">
+						<f:validateLength minimum="1" maximum="30" />
 					</p:inputText>
-					<p:message for="email" />
-				</p:panelGrid>
 
-				<p:outputLabel value="Telefone Residencial:" for="residencial" />
-				<p:inputMask id="residencial" label="Residencial"  mask="(99)9999-9999"
-					value="#{funcionarioBean.funcionario.telefone}" size="20"/>
+					<p:outputLabel value="CPF:" for="cpf" />
+					<p:inputText id="cpf" label="CPF"
+						value="#{funcionarioBean.funcionario.cpf}" size="20"
+						maxlength="30" required="true"
+						requiredMessage="Funcionario deve possuir um CPF associado">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
 
-				<p:outputLabel value="Celular:" for="celular" />
-				<p:inputText id="celular" label="Celular"
-					value="#{funcionarioBean.funcionario.celular}" size="20" />
-			</p:panelGrid>
-		</fieldset>
-		<!-- Cadastro do endereço -->
-		<fieldset>
-			<legend>Endereço</legend>
-			<p:panelGrid>
-				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" label="Nome"
+						value="#{funcionarioBean.funcionario.nome}" size="30"
+						maxlength="30" required="true"
+						requiredMessage="Você não tem nome?">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
+
+					<p:outputLabel value="Sobrenome:" for="sobrenome" />
+					<p:inputText id="sobrenome" label="Sobrenome"
+						value="#{funcionarioBean.funcionario.sobrenome}" size="30"
+						maxlength="30" required="true"
+						requiredMessage="Você não tem sobrenome?">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
+
+					<p:outputLabel value="e-Mail:" for="email" />
+					<p:panelGrid>
+						<p:inputText id="email" label="e-Mail"
+							value="#{funcionarioBean.funcionario.email}" size="50"
+							maxlength="50" required="true" validatorMessage="e-mail inválido">
+							<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
+						</p:inputText>
+						<p:message for="email" />
+					</p:panelGrid>
+
+					<p:outputLabel value="Telefone Residencial:" for="residencial" />
+					<p:inputMask id="residencial" label="Residencial"
+						mask="(99)9999-9999"
+						value="#{funcionarioBean.funcionario.telefone}" size="20" />
+
+					<p:outputLabel value="Celular:" for="celular" />
+					<p:inputMask id="celular" label="Celular" mask="(99)99999-9999"
+						value="#{funcionarioBean.funcionario.celular}" size="20" />
+				</h:panelGrid>
+			</p:fieldset>
+			<!-- Cadastro do endereço -->
+			<p:fieldset legend="Endereço">
+				<h:panelGrid columns="2">
 					<p:outputLabel value="CEP:" for="cep" />
-					<p:inputText id="cep" label="CEP"
+					<p:inputMask id="cep" label="CEP" mask="99.999-99"
 						value="#{funcionarioBean.endereco.cep}" required="true" size="10"
 						maxlength="10" />
 
@@ -105,15 +104,12 @@
 					<p:inputText id="complemento" label="Complemento"
 						value="#{funcionarioBean.endereco.complemento}" size="100"
 						quired="false" />
-				</p:panelGrid>
-			</p:panelGrid>
-		</fieldset>
+				</h:panelGrid>
+			</p:fieldset>
 
-		<!-- Cadastro cardo -->
-		<fieldset>
-			<legend>Cargo</legend>
-			<p:panelGrid>
-				<p:panelGrid columns="2">
+			<!-- Cadastro cardo -->
+			<p:fieldset legend="Cargo">
+				<h:panelGrid columns="2">
 					<p:outputLabel value="Data de Contratação:" for="dataContratacao" />
 					<p:inputText id="dataContratacao" label="Contratacao"
 						value="#{funcionarioBean.cargo.dataContratacao}" required="true"
@@ -130,16 +126,16 @@
 					<p:outputLabel value="Salário: " for="salario" />
 					<p:inputText id="salario" label="Salário"
 						value="#{funcionarioBean.cargo.salario}" required="true" size="10"
-						maxlength="10" />
+						maxlength="10"/>
 
 					<p:outputLabel value="Setor:" for="setor" />
 					<p:inputText id="setor" label="Setor"
 						value="#{funcionarioBean.cargo.setor}" required="true" />
-				</p:panelGrid>
-			</p:panelGrid>
-		</fieldset>
-
-		<h:commandButton action="#{funcionarioBean.salvar}" value="Salvar" />
-	</h:form>
-</ui:define>
+				</h:panelGrid>
+			</p:fieldset>
+			
+			<p:commandButton value="Resetar" type="reset" />
+			<p:commandButton action="#{funcionarioBean.salvar}" value="Salvar" />
+		</h:form>
+	</ui:define>
 </ui:composition>
