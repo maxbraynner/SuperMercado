@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import br.com.dao.FuncionarioDAO;
+import br.com.model.Fornecedor;
 import br.com.model.Funcionario;
 import br.com.util.DAOFactory;
 
@@ -26,6 +27,8 @@ private FuncionarioDAO funcionarioDAO;
 	public List<Funcionario> listar(){
 		return funcionarioDAO.listar(Funcionario.class);
 	}
+	
+	
 	
 	public void excluir(Funcionario funcionario){
 		funcionarioDAO.remover(funcionario);
