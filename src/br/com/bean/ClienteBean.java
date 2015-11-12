@@ -25,7 +25,7 @@ public class ClienteBean {
 		cliente.setEndereco(endereco);
 		
 		clienteRN.salvar(cliente);
-		return "/cliente/listagemCliente?faces-redirect=true";
+		return "/cliente/listar?faces-redirect=true";
 	}
 	
 	// Edição de cliente
@@ -33,7 +33,7 @@ public class ClienteBean {
 		// O endereço é novamente instanciado para possibilitar a exibição em tela
 		this.setEndereco(getCliente().getEndereco());
 		
-		return "/cliente/cadastroCliente?faces-redirect=true";
+		return "/cliente/cadastrar?faces-redirect=true";
 		
 	}
 	
