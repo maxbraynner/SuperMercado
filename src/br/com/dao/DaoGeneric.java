@@ -12,13 +12,11 @@ import br.com.util.HibernateUtil;
  */
 public class DaoGeneric<T> implements Dao<T> {
 	private Session session;
+	private Class<T> clas;
 	
-	public DaoGeneric(Session session) {
-		this.session = session;
-	}
-	
-	public DaoGeneric() {
+	public DaoGeneric(Class<T> clas) {
 		this.session = HibernateUtil.getSessionfactory().getCurrentSession();
+		this.clas = clas;
 	}
 	
 	@Override
@@ -37,12 +35,12 @@ public class DaoGeneric<T> implements Dao<T> {
 	}
 
 	@Override
-	public T consultarPorID(Class<T> clas, Long id) {
+	public T consultarPorID(Long id) {
 		return (T) this.session.get(clas, id);
 	}
 
 	@Override
-	public List<T> listar(Class<T> clas) {
+	public List<T> listar() {
 		return this.session.createCriteria(clas).list();
 	}
 
