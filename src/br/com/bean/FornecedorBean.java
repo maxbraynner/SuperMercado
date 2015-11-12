@@ -11,8 +11,10 @@ import br.com.regranegocio.FornecedorRN;
 public class FornecedorBean {
 	private Fornecedor fornecedor = new Fornecedor();
 	private List<Fornecedor> listFornecedor;
-	private List<Fornecedor> fornecedoresFiltrados;
 	FornecedorRN fornecedorRN; 
+	
+	// atributo usado pelo componente "dataTable"
+	private List<Fornecedor> fornecedoresFiltrados;
 
 	public FornecedorBean() throws InstantiationException, IllegalAccessException {
 		fornecedorRN = new FornecedorRN();
@@ -21,7 +23,16 @@ public class FornecedorBean {
 	public String salvar() throws InstantiationException, IllegalAccessException{		
 		fornecedorRN.salvar(fornecedor);
 		
+		// retorna para tela de listagem
 		return "/fornecedor/listar?faces-redirect=true";
+	}
+	
+	public void excluir(Fornecedor fornecedor){
+		// exclui o fornecedor
+		fornecedorRN.excluir(fornecedor);
+		
+		//recarrega a lista para não conter o fornecedor excluído
+		listFornecedor = fornecedorRN.listar();
 	}
 	
 	public List<Fornecedor> getListFornecedor() {
