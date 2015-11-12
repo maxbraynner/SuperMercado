@@ -1,7 +1,5 @@
 package br.com.dao;
 
-import org.hibernate.Session;
-
 import br.com.model.Cargo;
 
 /**
@@ -9,11 +7,7 @@ import br.com.model.Cargo;
  */
 public class CargoDAO extends DaoGeneric<Cargo> {
 	
-	public CargoDAO(Session session) {
-		super(session);
-	}
-	
 	public CargoDAO() {
-		super();
+		super(Cargo.class);
 	}
 }

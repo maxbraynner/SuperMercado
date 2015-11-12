@@ -25,7 +25,7 @@ private FuncionarioDAO funcionarioDAO;
 	}
 	
 	public List<Funcionario> listar(){
-		return funcionarioDAO.listar(Funcionario.class);
+		return funcionarioDAO.listar();
 	}
 	
 	

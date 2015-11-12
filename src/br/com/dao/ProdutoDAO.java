@@ -1,7 +1,5 @@
 package br.com.dao;
 
-import org.hibernate.Session;
-
 import br.com.model.Produto;
 
 /**
@@ -9,11 +7,7 @@ import br.com.model.Produto;
  */
 public class ProdutoDAO extends DaoGeneric<Produto> {
 	
-	public ProdutoDAO(Session session) {
-		super(session);
-	}
-	
 	public ProdutoDAO() {
-		super();
+		super(Produto.class);
 	}
 }

@@ -9,7 +9,7 @@ public interface Dao<T> {
 	
 	public void remover(T t);
 	
-	public T consultarPorID(Class<T> clas, Long id);
+	public T consultarPorID(Long id);
 	
-	public List<T> listar(Class<T> clas);
+	public List<T> listar();
 }

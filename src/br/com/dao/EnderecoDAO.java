@@ -1,7 +1,5 @@
 package br.com.dao;
 
-import org.hibernate.Session;
-
 import br.com.model.Endereco;
 
 /**
@@ -9,11 +7,7 @@ import br.com.model.Endereco;
  */
 public class EnderecoDAO extends DaoGeneric<Endereco> {
 	
-	public EnderecoDAO(Session session) {
-		super(session);
-	}
-	
 	public EnderecoDAO() {
-		super();
+		super(Endereco.class);
 	}
 }

@@ -1,7 +1,5 @@
 package br.com.dao;
 
-import org.hibernate.Session;
-
 import br.com.model.Funcionario;
 
 /**
@@ -9,11 +7,7 @@ import br.com.model.Funcionario;
  */
 public class FuncionarioDAO extends DaoGeneric<Funcionario> {
 	
-	public FuncionarioDAO(Session session) {
-		super(session);
-	}
-	
 	public FuncionarioDAO() {
-		super();
+		super(Funcionario.class);
 	}
 }

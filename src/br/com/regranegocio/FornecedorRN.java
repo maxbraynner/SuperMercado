@@ -22,6 +22,6 @@ public class FornecedorRN {
 	}
 	
 	public List<Fornecedor> listar() {
-		return fornedorDAO.listar(Fornecedor.class);
+		return fornedorDAO.listar();
 	}
 }

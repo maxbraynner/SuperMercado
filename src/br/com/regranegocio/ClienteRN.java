@@ -30,7 +30,7 @@ public class ClienteRN {
 	
 	// Realiza a listagem de todos clientes cadastrados no banco de dados
 	public List<Cliente> listar() {
-		return clienteDAO.listar(Cliente.class);
+		return clienteDAO.listar();
 	}
 	
 	// Realiza a exclusão de um cliente do banco de dados
