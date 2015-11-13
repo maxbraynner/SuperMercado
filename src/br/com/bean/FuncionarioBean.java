@@ -8,7 +8,6 @@ import javax.faces.bean.RequestScoped;
 import br.com.model.Cargo;
 import br.com.model.Endereco;
 import br.com.model.Funcionario;
-import br.com.regranegocio.ClienteRN;
 import br.com.regranegocio.FuncionarioRN;
 
 @ManagedBean(name = "funcionarioBean")
@@ -17,36 +16,36 @@ public class FuncionarioBean {
 	private Funcionario funcionario = new Funcionario();
 	private Endereco endereco = new Endereco();
 	private Cargo cargo = new Cargo();
-	private List<Funcionario> listFuncionario;
+	
 	private List<Funcionario> funcionarioFiltrados;
 	private List<Funcionario> listaFuncionarios;
-	FuncionarioRN funcionarioRN;
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
 		FuncionarioRN funcionarioRN = new FuncionarioRN();
 
 		funcionario.setEndereco(endereco);
-
+		cargo.setAtual(true);
 		funcionario.getCargos().add(cargo);
-
 		funcionarioRN.salvar(funcionario);
+		
 		return "/funcionario/listar";
-
 	}
-
-	public FuncionarioBean() throws InstantiationException, IllegalAccessException {
-		funcionarioRN = new FuncionarioRN();
-	}
-
-	// Edição de funcionario
-	public String editar() {
-		// O endereço é novamente instanciado para possibilitar a exibição
-		// em tela
+	
+	// EdiÃ§Ã£o de funcionario
+	public String editar() throws InstantiationException, IllegalAccessException {
+		FuncionarioRN funcionarioRN = new FuncionarioRN();
+		/*
+		 * O endereco Ã© novamente instanciado para possibilitar a exibiÃ§Ã£o
+		 * em tela
+		 */
 		this.setEndereco(getFuncionario().getEndereco());
-		return "/funcionario/cadastrar?faces-redirect=true";
+		Cargo cargoAtual = funcionarioRN.buscaCargoAtual(funcionario);
+		this.setCargo(cargoAtual);
+		
+		return "/funcionario/cadastrar";
 	}
 
-	// Exclusão do funcionario
+	// ExclusÃ£o do funcionario
 	public String excluir() throws InstantiationException, IllegalAccessException {
 		FuncionarioRN funcionarioRN = new FuncionarioRN();
 		funcionarioRN.excluir(funcionario);
@@ -84,14 +83,6 @@ public class FuncionarioBean {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
-	}
-
-	public List<Funcionario> getListFuncionario() {
-		return listFuncionario;
-	}
-
-	public void setListFuncionario(List<Funcionario> listFuncionario) {
-		this.listFuncionario = listFuncionario;
 	}
 
 	public List<Funcionario> getFuncionarioFiltrados() {

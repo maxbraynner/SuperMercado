@@ -23,14 +23,6 @@ public class Funcionario extends Pessoa {
 	private static final long serialVersionUID = 8380268096714238308L;
 	
 	private boolean ativo;
-	
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
 
 	@NaturalId
 	@Column(unique = true, nullable = false)
@@ -85,6 +77,14 @@ public class Funcionario extends Pessoa {
 		this.vendas = vendas;
 	}
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
