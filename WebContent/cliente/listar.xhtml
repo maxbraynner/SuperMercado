@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
 	
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>"
-	<title>Listagem de Clientes</title>
-</h:head>	
-<h:body>
-	<h1>Listagem de Clientes</h1>
-	<h:form>
-	<h:messages/>
-	<h:dataTable value="#{clienteBean.listaClientes}" var="cliente" rules="rows" cellpadding="5">
-		<f:facet name="caption">
-			A listagem a seguir exibe a relação de todos os clientes cadastrados no supermercado. Nessa tela é 
-			possível realizar a edição e a atualização dos clientes cadastrados.
-		</f:facet>
-		<f:facet name="header">Listagem de Clientes</f:facet>
-		<f:facet name="footer">Final da Listagem</f:facet>
-		<h:column>
-			<h:commandLink action="#{clienteBean.ativar}">
-				<h:graphicImage library="imagens" name="cliente_ativo_#{cliente.ativo}.png"
-					style="border:0"/>	
-				<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>	
-			</h:commandLink>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Código</f:facet>
-			#{cliente.id}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Nome</f:facet>
-			#{cliente.nome}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Sobrenome</f:facet>
-			#{cliente.sobrenome}
-		</h:column>
-		<h:column>
-			<f:facet name="header">e-Mail</f:facet>
-			<a href="mailto:#{cliente.email}">#{cliente.email}</a>
-		</h:column>
-		<h:column>
-			<h:commandLink action="#{clienteBean.editar}">
-				<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
-				<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
-			</h:commandLink>
-		</h:column>
-		<h:column>
-			<h:commandLink action="#{clienteBean.excluir}"
-				onclick="if (!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
-				<h:graphicImage library="imagens" name="excluir16.png" style="border:0"/>
-				<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
-			</h:commandLink>
-		</h:column>
-	</h:dataTable>
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	<h:form id="formTabela">
+		<p:dataTable id="tabela" var="cliente"
+			value="#{clienteBean.listaClientes}"
+			emptyMessage="Não há clientes cadastrados"
+			filteredValue="#{clienteBean.clientesFiltrados}"
+			paginator="true" rows="20">	
+				
+			<f:facet name="header">
+				<h:outputText value="Listagem de Clientes" />
+			</f:facet>
+			
+			<f:facet name="footer">
+				<h:outputText value="Final da listagem" />
+			</f:facet>	
+			
+			<p:column filterBy="#{cliente.id}" headerText="Id"
+				sortBy="#{cliente.id}">
+				<h:commandLink action="#{clienteBean.ativar}">
+					<h:graphicImage library="imagens" name="cliente_ativo_#{cliente.ativo}.png"
+						style="border:0;margin-right:10px"/>	
+					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>	
+				</h:commandLink>
+			
+				<h:outputText value="#{cliente.id}" />
+			</p:column>	
+	
+			<p:column filterBy="#{cliente.nome}" sortBy="#{cliente.nome}"
+				headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+		
+			<p:column filterBy="#{cliente.sobrenome}" sortBy="#{cliente.sobrenome}"
+				headerText="Sobrenome">
+				<h:outputText value="#{cliente.sobrenome}" />
+			</p:column>
+		
+			<p:column filterBy="#{cliente.email}" sortBy="#{cliente.email}"
+				headerText="e-Mail">
+				<a href="mailto:#{cliente.email}">#{cliente.email}</a>
+			</p:column>
+		
+			<p:column headerText="Ações">
+				<h:commandLink action="#{clienteBean.editar}">
+					<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
+					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
+				</h:commandLink>
+			
+				<h:commandLink action="#{clienteBean.excluir}"
+					onclick="if (!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
+					<h:graphicImage library="imagens" name="excluir16.png" style="border:0;margin-left:10px"/>
+					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
 	</h:form>
-</h:body>
-</html>
+	</ui:define>
+</ui:composition>

@@ -20,24 +20,25 @@
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Matrícula:" for="matricula"/>
 				<p:inputText id="matricula" label="Matrícula" value="#{clienteBean.cliente.matricula}" size="20"
-					maxlength="30">
+					maxlength="30" required="true" requiredMessage="Obrigatório inserir matrícula">
 					<f:validateLength minimum="1" maximum="30"/>
 				</p:inputText>
 				
-				<p:outputLabel value="CPF:" for="cpf"/>
-				<p:inputText id="cpf" label="CPF" value="#{clienteBean.cliente.cpf}" size="20"
-					maxlength="30">
+				<h:outputLabel value="CPF:" for="cpf"/>
+				<h:inputText id="cpf" label="CPF" value="#{clienteBean.cliente.cpf}" size="20"
+					maxlength="30" required="true" requiredMessage="Obrigatório inserir CPF">
 					<f:validateLength minimum="1" maximum="30"/>
-				</p:inputText>
+				</h:inputText>
 				
 				<p:outputLabel value="Nome:" for="nome"/>
 				<p:inputText id="nome" label="Nome" value="#{clienteBean.cliente.nome}"
-					maxlength="100">
+					maxlength="100" required="true">
 					<f:validateLength minimum="1" maximum="30"/>
 				</p:inputText>
 				
 				<p:outputLabel value="Sobrenome:" for="sobrenome"/>
-				<p:inputText id="sobrenome" label="Sobrenome" value="#{clienteBean.cliente.sobrenome}">
+				<p:inputText id="sobrenome" label="Sobrenome" value="#{clienteBean.cliente.sobrenome}"
+					required="true">
 					<f:validateLength minimum="1" maximum="30"/>
 				</p:inputText>
 				
@@ -46,7 +47,7 @@
 					<p:inputText id="email"
 						label="e-Mail"
 						value="#{clienteBean.cliente.email}"
-						size="50" maxlength="50">
+						size="50" maxlength="50" required="true">
 						<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+"/>
 					</p:inputText>
 					<h:message for="email"/>
@@ -58,7 +59,7 @@
 				
 				<p:outputLabel for="celular" value="Celular:" />
 				<p:inputMask id="celular" label="Celular" value="#{clienteBean.cliente.celular}"
-					mask="(999) 99999-9999"/>
+					mask="(999) 99999-9999" required="true"/>
 			</h:panelGrid>
 			</p:fieldset>
 			<br/>
@@ -68,23 +69,26 @@
 				<h:panelGrid columns="2">
 					<p:outputLabel value="CEP:" for="cep"/>
 					<p:inputMask id="cep" label="CEP" value="#{clienteBean.endereco.cep}"
-						mask="99999-999" size="10" maxlength="10"/>
+						mask="99999-999" size="10" maxlength="10" required="true"/>
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro" label="Logradouro" value="#{clienteBean.endereco.logradouro}"
 						maxlength="120" size="50"/>
 				
 					<p:outputLabel value="Número: " for="numero" />
 					<p:inputText id="numero" label="Número" value="#{clienteBean.endereco.numero}"
-						size="10" maxlength="10" />
+						size="10" maxlength="10" required="true"/>
 					
 					<p:outputLabel value="Bairro:" for="bairro"/>
-					<p:inputText id="bairro" label="Bairro" value="#{clienteBean.endereco.bairro}"/>
+					<p:inputText id="bairro" label="Bairro" value="#{clienteBean.endereco.bairro}"
+						required="true"/>
 					
 					<p:outputLabel value="Cidade:" for="cidade"/>
-					<p:inputText id="cidade" label="Cidade" value="#{clienteBean.endereco.cidade}"/>
+					<p:inputText id="cidade" label="Cidade" value="#{clienteBean.endereco.cidade}"
+						required="true"/>
 						
 					<p:outputLabel value="Estado:" for="estado"/>
-					<p:inputText id="estado" label="Cidade" value="#{clienteBean.endereco.uf}"/>
+					<p:inputText id="estado" label="Cidade" value="#{clienteBean.endereco.uf}"
+						required="true"/>
 						
 					<p:outputLabel value="Complemento:" for="complemento"/>
 					<p:inputText id="complemento" label="Complemento" value="#{clienteBean.endereco.complemento}"

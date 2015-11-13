@@ -7,6 +7,7 @@ import javax.faces.bean.RequestScoped;
 
 import br.com.model.Cliente;
 import br.com.model.Endereco;
+import br.com.model.Fornecedor;
 import br.com.regranegocio.ClienteRN;
 
 @ManagedBean(name = "clienteBean")
@@ -15,6 +16,9 @@ public class ClienteBean {
 	private Cliente cliente = new Cliente();
 	private Endereco endereco = new Endereco();
 	private List<Cliente> listaClientes;
+	
+	// Lista usada para organização da tela listagem de clientes
+	private List<Fornecedor> clientesFiltrados;
 	
 	// Salva um cliente no banco
 	public String salvar() throws InstantiationException, IllegalAccessException {
@@ -25,15 +29,15 @@ public class ClienteBean {
 		cliente.setEndereco(endereco);
 		
 		clienteRN.salvar(cliente);
-		return "/cliente/listar?faces-redirect=true";
+		return "/cliente/listar";
 	}
 	
 	// Edição de cliente
 	public String editar() {
 		// O endereço é novamente instanciado para possibilitar a exibição em tela
 		this.setEndereco(getCliente().getEndereco());
-		
-		return "/cliente/cadastrar?faces-redirect=true";
+		this.getCliente();
+		return "/cliente/cadastrar";
 		
 	}
 	
@@ -41,7 +45,6 @@ public class ClienteBean {
 	public void excluir() throws InstantiationException, IllegalAccessException {
 		ClienteRN clienteRN = new ClienteRN();
 		clienteRN.excluir(cliente);
-		this.listaClientes = null;
 	}
 	
 	// Ativação OU inativação de um cliente
@@ -75,11 +78,18 @@ public class ClienteBean {
 	
 	// Lista de todos os clientes cadastrados
 	public List<Cliente> getListaClientes() throws InstantiationException, IllegalAccessException {
-		if (this.listaClientes == null) {
 			ClienteRN clienteRN = new ClienteRN();
 			this.listaClientes = clienteRN.listar();
-		}
+		
 		return this.listaClientes;
+	}
+
+	public List<Fornecedor> getClientesFiltrados() {
+		return clientesFiltrados;
+	}
+
+	public void setClientesFiltrados(List<Fornecedor> clientesFiltrados) {
+		this.clientesFiltrados = clientesFiltrados;
 	}
 
 }
