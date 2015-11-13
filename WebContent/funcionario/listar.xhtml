@@ -14,13 +14,13 @@
 	<ui:define name="conteudo">
 
 		<h:form id="listagem">
-			<p:dataTable value="#{funcionarioBean.listaFuncionarios}"
-				var="funcionario" rules="rows" cellpadding="5">
-				<f:facet name="caption">
-					<!-- A listagem a seguir exibe a relação de todos os clientes cadastrados no supermercado. Nessa tela é 
-			possível realizar a edição e a atualização dos clientes cadastrados. -->
-				</f:facet>
-				<f:facet name="header">Listagem de Funcionarios</f:facet>
+			<p:dataTable id="tabela" var="funcionario" 
+				value="#{funcionarioBean.listaFuncionarios}"
+				emptyMessage="Não há funcionários cadastrados"
+				filteredValue="#{funcionarioBean.funcionariosFiltrados}"
+				paginator="true" rows="20">
+				
+				<f:facet name="header">Listagem de Funcionários</f:facet>
 				<f:facet name="footer">Final da Listagem</f:facet>
 
 				<p:column filterBy="#{funcionario.id}" headerText="Id"
@@ -52,7 +52,7 @@
 						icon="ui-icon-trash"
 						onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
 						<f:setPropertyActionListener value="#{funcionario}"
-							target="#{funcionarioBean.funcionario}"></f:setPropertyActionListener>
+							target="#{funcionarioBean.funcionario}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>

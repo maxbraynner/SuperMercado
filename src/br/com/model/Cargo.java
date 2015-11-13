@@ -27,8 +27,6 @@ public class Cargo {
 	@Column(name = "data_contratacao", nullable = false, updatable = false)
 	private Date dataContratacao;
 	
-	private boolean atual;
-	
 	public String getNome() {
 		return nome;
 	}
@@ -68,15 +66,7 @@ public class Cargo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public boolean isAtual() {
-		return atual;
-	}
-
-	public void setAtual(boolean atual) {
-		this.atual = atual;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

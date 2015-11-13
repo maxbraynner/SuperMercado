@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -36,10 +37,10 @@ public class Funcionario extends Pessoa {
 
 	// todos os cargos que o funcionário já exerceu
 	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.DELETE })
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_funcionario")
+	@OneToOne
+	@JoinColumn(name = "id_cargo")
 	@org.hibernate.annotations.ForeignKey(name = "fk_funcionario_cargo")
-	private Set<Cargo> cargos = new HashSet<Cargo>();
+	private Cargo cargo;
 	
 	// Vendas realizadas pelo funcionário
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "funcionario")
@@ -61,14 +62,6 @@ public class Funcionario extends Pessoa {
 		this.gerenciados = gerenciados;
 	}
 
-	public Set<Cargo> getCargos() {
-		return cargos;
-	}
-
-	public void setCargos(Set<Cargo> cargos) {
-		this.cargos = cargos;
-	}
-
 	public Set<Venda> getVendas() {
 		return vendas;
 	}
@@ -85,6 +78,14 @@ public class Funcionario extends Pessoa {
 		this.ativo = ativo;
 	}
 	
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

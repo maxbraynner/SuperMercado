@@ -17,15 +17,14 @@ public class FuncionarioBean {
 	private Endereco endereco = new Endereco();
 	private Cargo cargo = new Cargo();
 	
-	private List<Funcionario> funcionarioFiltrados;
+	private List<Funcionario> funcionariosFiltrados;
 	private List<Funcionario> listaFuncionarios;
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
 		FuncionarioRN funcionarioRN = new FuncionarioRN();
 
 		funcionario.setEndereco(endereco);
-		cargo.setAtual(true);
-		funcionario.getCargos().add(cargo);
+		funcionario.setCargo(cargo);
 		funcionarioRN.salvar(funcionario);
 		
 		return "/funcionario/listar";
@@ -39,8 +38,7 @@ public class FuncionarioBean {
 		 * em tela
 		 */
 		this.setEndereco(getFuncionario().getEndereco());
-		Cargo cargoAtual = funcionarioRN.buscaCargoAtual(funcionario);
-		this.setCargo(cargoAtual);
+		this.setCargo(funcionario.getCargo());
 		
 		return "/funcionario/cadastrar";
 	}
@@ -85,12 +83,12 @@ public class FuncionarioBean {
 		this.cargo = cargo;
 	}
 
-	public List<Funcionario> getFuncionarioFiltrados() {
-		return funcionarioFiltrados;
+	public List<Funcionario> getFuncionariosFiltrados() {
+		return funcionariosFiltrados;
 	}
 
-	public void setFuncionarioFiltrados(List<Funcionario> funcionarioFiltrados) {
-		this.funcionarioFiltrados = funcionarioFiltrados;
+	public void setFuncionariosFiltrados(List<Funcionario> funcionariosFiltrados) {
+		this.funcionariosFiltrados = funcionariosFiltrados;
 	}
 
 }
