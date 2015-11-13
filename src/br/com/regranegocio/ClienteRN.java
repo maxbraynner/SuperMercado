@@ -13,7 +13,6 @@ public class ClienteRN {
 	// Instanciação do DAOFactory a partir do construtor
 	public ClienteRN() throws InstantiationException, IllegalAccessException { 
 		DAOFactory factory = new DAOFactory(); 
-		
 		this.clienteDAO = (ClienteDAO) factory.getDao(ClienteDAO.class);
 	}
 	

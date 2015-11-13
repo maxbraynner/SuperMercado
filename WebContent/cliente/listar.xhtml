@@ -33,7 +33,7 @@
 						style="border:0;margin-right:10px"/>	
 					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>	
 				</h:commandLink>
-			
+					
 				<h:outputText value="#{cliente.id}" />
 			</p:column>	
 	
@@ -53,16 +53,16 @@
 			</p:column>
 		
 			<p:column headerText="Ações">
-				<h:commandLink action="#{clienteBean.editar}">
-					<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
-					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
-				</h:commandLink>
-			
-				<h:commandLink action="#{clienteBean.excluir}"
-					onclick="if (!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
-					<h:graphicImage library="imagens" name="excluir16.png" style="border:0;margin-left:10px"/>
-					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>
-				</h:commandLink>
+				<p:commandButton action="#{clienteBean.editar}" 
+					icon="ui-icon-pencil">
+					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
+				</p:commandButton>
+				
+				<p:commandButton action="#{clienteBean.excluir}" 
+					icon="ui-icon-trash"
+					onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
+					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
+				</p:commandButton>
 			</p:column>
 		</p:dataTable>
 	</h:form>
