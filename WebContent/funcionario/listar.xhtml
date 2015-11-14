@@ -48,7 +48,7 @@
 							target="#{funcionarioBean.funcionario}" />
 					</p:commandButton>
 
-					<p:commandButton action="#{funcionarioBean.excluir}"
+					<p:commandButton action="#{funcionarioBean.excluir}" style="margin-left: 10px"
 						icon="ui-icon-trash"
 						onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
 						<f:setPropertyActionListener value="#{funcionario}"
