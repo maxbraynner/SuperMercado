@@ -9,23 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "funcionario")
-@PrimaryKeyJoinColumn(name = "id")
 public class Funcionario extends Pessoa {
 
 	private static final long serialVersionUID = 8380268096714238308L;
 	
 	private boolean ativo;
 
-	@NaturalId
 	@Column(unique = true, nullable = false)
 	private String matricula;
 
