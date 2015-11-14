@@ -49,14 +49,14 @@
 				</p:column>
 
 				<p:column headerText="Ações">
-					<p:commandButton action="/fornecedor/cadastrar" value="Editar"
+					<p:commandButton action="/fornecedor/cadastrar"
 						ajax="false" icon="ui-icon-pencil">
 						<f:setPropertyActionListener value="#{fornecedor}"
 							target="#{fornecedorBean.fornecedor}" />
 					</p:commandButton>
 
-					<p:commandButton value="Excluir" style="margin-left: 10px"
-						icon="ui-icon-close"
+					<p:commandButton style="margin-left: 10px"
+						icon="ui-icon-trash"
 						actionListener="#{fornecedorBean.excluir(fornecedor)}" update="tabela">
 						<p:confirm header="Confirmation"
 							message="Deseja realmente excluir?" icon="ui-icon-alert" />

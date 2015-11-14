@@ -58,7 +58,7 @@
 					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
 				</p:commandButton>
 				
-				<p:commandButton action="#{clienteBean.excluir}" 
+				<p:commandButton action="#{clienteBean.excluir}" style="margin-left: 10px"
 					icon="ui-icon-trash"
 					onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
 					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
