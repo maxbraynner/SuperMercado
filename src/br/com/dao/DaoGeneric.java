@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
  * Classe de acesso básico para qualquer entidade 
  * @param <T>
  */
-public class DaoGeneric<T> implements Dao<T> {	
+public abstract class DaoGeneric<T> implements Dao<T> {	
 	private Class<T> clas;
 	
 	/**
@@ -46,7 +46,4 @@ public class DaoGeneric<T> implements Dao<T> {
 		return this.sessionFactory.getCurrentSession().createCriteria(clas).list();
 	}
 	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 }
