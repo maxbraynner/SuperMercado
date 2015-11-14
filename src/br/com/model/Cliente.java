@@ -6,12 +6,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-@PrimaryKeyJoinColumn(name = "id")
 public class Cliente extends Pessoa {
 
 	private static final long serialVersionUID = 3984565902206261802L;
