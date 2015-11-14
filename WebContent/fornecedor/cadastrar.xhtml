@@ -13,23 +13,29 @@
 
 	<ui:define name="conteudo">
 		<h:form id="cadastro">
-			<h:inputHidden value="#{fornecedorBean.fornecedor.id}" />
-
 			<p:messages id="messages" />
+
 			<p:fieldset legend="Dados Fornecedor">
+				<h:inputHidden value="#{fornecedorBean.fornecedor.id}" />
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" required="true"
-						value="#{fornecedorBean.fornecedor.nome}" />
+						value="#{fornecedorBean.fornecedor.nome}">
+						<p:ajax update="messages" event="blur" />
+					</p:inputText>
 
 					<p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
 					<p:inputText id="nomeFantasia" required="true" size="40"
-						value="#{fornecedorBean.fornecedor.nomeFantasia}" />
+						value="#{fornecedorBean.fornecedor.nomeFantasia}">
+						<p:ajax update="messages" event="blur" />
+					</p:inputText>
 
 					<p:outputLabel value="CNPJ" for="cnpj" />
 					<p:inputMask id="cnpj" required="true"
 						value="#{fornecedorBean.fornecedor.CNPJ}"
-						mask="99.999.999/9999-99" />
+						mask="99.999.999/9999-99">
+						<p:ajax update="messages" event="blur" />
+					</p:inputMask>
 
 					<p:outputLabel value="E-Mail" for="email" />
 					<p:inputText id="email" required="true"
