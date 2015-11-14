@@ -2,35 +2,39 @@ package br.com.regranegocio;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.dao.FornecedorDAO;
 import br.com.model.Fornecedor;
-import br.com.util.DAOFactory;
 
+@Repository("fornecedorRN")
+@Transactional
 public class FornecedorRN {
 	
-	private FornecedorDAO fornedorDAO;
+	private FornecedorDAO fornecedorDAO;
 	
-	// Instanciação do DAOFactory a partir do construtor
-	public FornecedorRN() throws InstantiationException, IllegalAccessException { 
-		DAOFactory factory = new DAOFactory(); 
-		
-		// recupera o dao
-		this.fornedorDAO = (FornecedorDAO) factory.getDao(FornecedorDAO.class);
+	@Autowired
+	public FornecedorRN(FornecedorDAO fornecedorDAO) { 
+		this.fornecedorDAO = fornecedorDAO;
 	}
 	
 	public void salvar(Fornecedor fornecedor) {
 		if (fornecedor.getId() == null || fornecedor.getId().intValue() == 0) {
-			fornedorDAO.inserir(fornecedor);
+			fornecedorDAO.inserir(fornecedor);
 		}else{
-			fornedorDAO.alterar(fornecedor);
+			fornecedorDAO.alterar(fornecedor);
 		}
 	}
 	
 	public List<Fornecedor> listar() {
-		return fornedorDAO.listar();
+		return fornecedorDAO.listar();
 	}
 	
 	public void excluir(Fornecedor fornecedor){
-		this.fornedorDAO.remover(fornecedor);
+		this.fornecedorDAO.remover(fornecedor);
 	}
+
+	
 }

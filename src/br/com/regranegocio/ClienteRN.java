@@ -2,18 +2,22 @@ package br.com.regranegocio;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.dao.ClienteDAO;
 import br.com.model.Cliente;
-import br.com.util.DAOFactory;
 
+@Repository("clienteRN")
+@Transactional
 public class ClienteRN {
 	
 	private ClienteDAO clienteDAO;
 	
-	// Instanciação do DAOFactory a partir do construtor
-	public ClienteRN() throws InstantiationException, IllegalAccessException { 
-		DAOFactory factory = new DAOFactory(); 
-		this.clienteDAO = (ClienteDAO) factory.getDao(ClienteDAO.class);
+	@Autowired	
+	public ClienteRN(ClienteDAO clienteDAO){ 
+		this.clienteDAO = clienteDAO;
 	}
 	
 	// Salva ou atualiza um cliente no banco de dados
@@ -36,4 +40,5 @@ public class ClienteRN {
 	public void excluir(Cliente cliente) {
 		clienteDAO.remover(cliente);
 	}
+
 }

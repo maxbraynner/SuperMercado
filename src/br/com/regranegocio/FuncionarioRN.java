@@ -2,20 +2,22 @@ package br.com.regranegocio;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.dao.FuncionarioDAO;
 import br.com.model.Funcionario;
-import br.com.util.DAOFactory;
 
-
+@Repository("funcionarioRN")
+@Transactional
 public class FuncionarioRN {
 
 private FuncionarioDAO funcionarioDAO;
-	
-	// Instanciação do DAOFactory a partir do construtor
-	public FuncionarioRN() throws InstantiationException, IllegalAccessException { 
-		DAOFactory factory = new DAOFactory(); 
-		
-		this.funcionarioDAO = (FuncionarioDAO) factory.getDao(FuncionarioDAO.class);
+
+	@Autowired
+	public FuncionarioRN(FuncionarioDAO funcionarioDAO){ 
+		this.funcionarioDAO = funcionarioDAO;
 	}
 	
 	public void salvar(Funcionario funcionario) {
