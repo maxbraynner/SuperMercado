@@ -3,6 +3,7 @@ package br.com.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import br.com.model.Cliente;
@@ -20,10 +21,11 @@ public class ClienteBean {
 	// Lista usada para organização da tela listagem de clientes
 	private List<Fornecedor> clientesFiltrados;
 	
+	@ManagedProperty(name="clienteRN", value="#{clienteRN}")
+	private ClienteRN clienteRN;
+	
 	// Salva um cliente no banco
 	public String salvar() throws InstantiationException, IllegalAccessException {
-		ClienteRN clienteRN = new ClienteRN();
-		
 		// Cliente quando é cadastrado está automaticamente ativo no sistema
 		cliente.setAtivo(true);
 		cliente.setEndereco(endereco);
@@ -43,14 +45,11 @@ public class ClienteBean {
 	
 	// Exclusão do cliente
 	public void excluir() throws InstantiationException, IllegalAccessException {
-		ClienteRN clienteRN = new ClienteRN();
 		clienteRN.excluir(cliente);
 	}
 	
 	// Ativação OU inativação de um cliente
 	public void ativar() throws InstantiationException, IllegalAccessException {
-		ClienteRN clienteRN = new ClienteRN();
-		
 		if (cliente.isAtivo()) {
 			cliente.setAtivo(false);
 		} else {
@@ -78,7 +77,6 @@ public class ClienteBean {
 	
 	// Lista de todos os clientes cadastrados
 	public List<Cliente> getListaClientes() throws InstantiationException, IllegalAccessException {
-			ClienteRN clienteRN = new ClienteRN();
 			this.listaClientes = clienteRN.listar();
 		
 		return this.listaClientes;
@@ -90,6 +88,10 @@ public class ClienteBean {
 
 	public void setClientesFiltrados(List<Fornecedor> clientesFiltrados) {
 		this.clientesFiltrados = clientesFiltrados;
+	}
+
+	public void setClienteRN(ClienteRN clienteRN) {
+		this.clienteRN = clienteRN;
 	}
 
 }

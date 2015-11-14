@@ -3,6 +3,7 @@ package br.com.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import br.com.model.Fornecedor;
 import br.com.regranegocio.FornecedorRN;
@@ -11,15 +12,13 @@ import br.com.regranegocio.FornecedorRN;
 public class FornecedorBean {
 	private Fornecedor fornecedor = new Fornecedor();
 	private List<Fornecedor> listFornecedor;
-	FornecedorRN fornecedorRN; 
+	
+	@ManagedProperty(name="fornecedorRN", value="#{fornecedorRN}")
+	private FornecedorRN fornecedorRN; 
 	
 	// atributo usado pelo componente "dataTable"
 	private List<Fornecedor> fornecedoresFiltrados;
 
-	public FornecedorBean() throws InstantiationException, IllegalAccessException {
-		fornecedorRN = new FornecedorRN();
-	}
-	
 	public String salvar() throws InstantiationException, IllegalAccessException{		
 		fornecedorRN.salvar(fornecedor);
 		
@@ -63,5 +62,8 @@ public class FornecedorBean {
 		this.fornecedoresFiltrados = fornecedoresFiltrados;
 	}
 
+	public void setFornecedorRN(FornecedorRN fornecedorRN) {
+		this.fornecedorRN = fornecedorRN;
+	}
 
 }

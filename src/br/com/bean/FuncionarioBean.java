@@ -3,6 +3,7 @@ package br.com.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import br.com.model.Cargo;
@@ -19,10 +20,11 @@ public class FuncionarioBean {
 	
 	private List<Funcionario> funcionariosFiltrados;
 	private List<Funcionario> listaFuncionarios;
+	
+	@ManagedProperty(name="funcionarioRN", value="#{funcionarioRN}")
+	private FuncionarioRN funcionarioRN;
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
-		FuncionarioRN funcionarioRN = new FuncionarioRN();
-
 		funcionario.setEndereco(endereco);
 		funcionario.setCargo(cargo);
 		funcionarioRN.salvar(funcionario);
@@ -32,7 +34,6 @@ public class FuncionarioBean {
 	
 	// Edição de funcionario
 	public String editar() throws InstantiationException, IllegalAccessException {
-		FuncionarioRN funcionarioRN = new FuncionarioRN();
 		/*
 		 * O endereco é novamente instanciado para possibilitar a exibição
 		 * em tela
@@ -45,7 +46,6 @@ public class FuncionarioBean {
 
 	// Exclusão do funcionario
 	public String excluir() throws InstantiationException, IllegalAccessException {
-		FuncionarioRN funcionarioRN = new FuncionarioRN();
 		funcionarioRN.excluir(funcionario);
 		
 		return "/funcionario/listar?faces-redirect=true";
@@ -53,8 +53,6 @@ public class FuncionarioBean {
 
 	// Lista de todos os funcionarios cadastrados
 	public List<Funcionario> getListaFuncionarios() throws InstantiationException, IllegalAccessException {
-		FuncionarioRN funcionarioRN = new FuncionarioRN();
-
 		this.listaFuncionarios = funcionarioRN.listar();
 		return this.listaFuncionarios;
 	}
@@ -89,6 +87,10 @@ public class FuncionarioBean {
 
 	public void setFuncionariosFiltrados(List<Funcionario> funcionariosFiltrados) {
 		this.funcionariosFiltrados = funcionariosFiltrados;
+	}
+
+	public void setFuncionarioRN(FuncionarioRN funcionarioRN) {
+		this.funcionarioRN = funcionarioRN;
 	}
 
 }
