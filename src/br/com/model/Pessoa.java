@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "pessoa")
@@ -25,7 +24,7 @@ public abstract class Pessoa implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", nullable = false)
 	private Integer id;
 	
 	private String nome;
@@ -42,7 +41,6 @@ public abstract class Pessoa implements Serializable {
 	private String email;
 	
 	@Column(unique = true)
-	@NaturalId
 	private String cpf;
 	
 	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.DELETE })
