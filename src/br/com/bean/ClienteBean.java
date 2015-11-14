@@ -17,7 +17,6 @@ public class ClienteBean {
 	private Cliente cliente = new Cliente();
 	private Endereco endereco = new Endereco();
 	private List<Cliente> listaClientes;
-	private int testeMatheus;
 	
 	// Lista usada para organização da tela listagem de clientes
 	private List<Fornecedor> clientesFiltrados;
