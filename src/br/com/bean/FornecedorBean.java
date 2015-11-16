@@ -19,7 +19,7 @@ public class FornecedorBean {
 	// atributo usado pelo componente "dataTable"
 	private List<Fornecedor> fornecedoresFiltrados;
 
-	public String salvar() throws InstantiationException, IllegalAccessException{		
+	public String salvar(){		
 		fornecedorRN.salvar(fornecedor);
 		
 		// retorna para tela de listagem
