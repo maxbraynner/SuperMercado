@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -12,50 +12,73 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+		<h:form id="formTabela">
+			<p:dataTable id="tabela" var="produto"
+				value="#{produtoBean.listProduto}"
+				emptyMessage="nÃ£o hÃ¡ produto cadastrado"
+				filteredValue="#{produtoBean.produtosFiltrados}" paginator="true"
+				rows="20">
 
-		<h:form id="listagem">
-			<p:dataTable id="tabela" var="funcionario" 
-				value="#{funcionarioBean.listaFuncionarios}"
-				emptyMessage="Não há funcionários cadastrados"
-				filteredValue="#{funcionarioBean.funcionariosFiltrados}"
-				paginator="true" rows="20">
-				
-				<f:facet name="header">Listagem de Funcionários</f:facet>
-				<f:facet name="footer">Final da Listagem</f:facet>
+				<f:facet name="header">
+					<h:outputText value="Listagem de Produtos" />
+				</f:facet>
 
-				<p:column filterBy="#{funcionario.id}" headerText="Id"
-					sortBy="#{funcionario.id}">
-					<h:outputText value="#{funcionario.id}" />
+				<p:column filterBy="#{produto.id}" headerText="Id"
+					sortBy="#{produto.id}">
+					<h:outputText value="#{produto.id}" />
 				</p:column>
 
-				<p:column filterBy="#{funcionario.nome}" headerText="Id"
-					sortBy="#{funcionario.nome}">
-					<h:outputText value="#{funcionario.nome}" />
+				<p:column filterBy="#{produto.titulo}" sortBy="#{produto.titulo}"
+					headerText="TÃ­tulo">
+					<h:outputText value="#{produto.titulo}" />
 				</p:column>
 
-				<p:column filterBy="#{funcionario.email}" headerText="Id"
-					sortBy="#{funcionario.email}">
-
-					<a href="mailto:#{funcionario.email}"><h:outputText
-							value="#{funcionario.email}" /></a>
+				<p:column filterBy="#{produto.marca}" sortBy="#{produto.marca}"
+					headerText="Marca">
+					<h:outputText value="#{produto.marca}" />
 				</p:column>
 
+				<p:column filterBy="#{produto.categoria}"
+					sortBy="#{produto.categoria}" headerText="Categoria">
+					<h:outputText value="#{produto.categoria}" />
+				</p:column>
 
-				<p:column>
-					<p:commandButton action="#{funcionarioBean.editar}"
+				<p:column filterBy="#{produto.quantidadeEstoque}"
+					sortBy="#{produto.quantidadeEstoque}" headerText="Quantidade">
+					<h:outputText value="#{produto.quantidadeEstoque}" />
+				</p:column>
+
+				<p:column filterBy="#{produto.fornecedor.nome}"
+					sortBy="#{produto.fornecedor.nome}" headerText="Fornecedor">
+					<h:outputText
+						value="#{produto.fornecedor.nome} - #{produto.fornecedor.CNPJ}" />
+				</p:column>
+
+				<p:column headerText="AÃ§Ãµes">
+					<p:commandButton action="#{produtoBean.exibirAlterar}" ajax="false"
 						icon="ui-icon-pencil">
-						<f:setPropertyActionListener value="#{funcionario}"
-							target="#{funcionarioBean.funcionario}" />
+						<f:setPropertyActionListener value="#{produto}"
+							target="#{produtoBean.produto}" />
 					</p:commandButton>
 
-					<p:commandButton action="#{funcionarioBean.excluir}" style="margin-left: 10px"
-						icon="ui-icon-trash"
-						onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
-						<f:setPropertyActionListener value="#{funcionario}"
-							target="#{funcionarioBean.funcionario}" />
+					<p:commandButton style="margin-left: 10px" icon="ui-icon-trash"
+						actionListener="#{produtoBean.excluir(produto)}" update="tabela" ajax="true">	
+						<p:confirm header="Confirmation"
+							message="Deseja realmente excluir?" icon="ui-icon-alert" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+
 		</h:form>
+
+		<h:form>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="NÃ£o" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
