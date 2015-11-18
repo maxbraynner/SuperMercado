@@ -36,7 +36,7 @@
 						<p:ajax update="messages" event="blur" />
 					</p:inputMask>
 
-					<p:outputLabel value="Qauntidade" for="quantidade" />
+					<p:outputLabel value="Quantidade" for="quantidade" />
 					<p:spinner id="quantidade" required="true" min="0"
 						value="#{produtoBean.produto.quantidadeEstoque}">
 						<p:ajax update="messages" event="blur" />
@@ -51,6 +51,9 @@
 							var="fornecedor" itemLabel="#{fornecedor.nome}"
 							itemValue="#{fornecedor.id}" />
 					</p:selectOneMenu>
+
+					<h:outputText value="Ativo" />
+					<p:selectBooleanCheckbox value="#{produtoBean.produto.ativo}" />
 				</h:panelGrid>
 			</p:fieldset>
 
