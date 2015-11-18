@@ -36,5 +36,7 @@ public class FornecedorRN {
 		this.fornecedorDAO.remover(fornecedor);
 	}
 
-	
+	public Fornecedor consultarPorId(Integer id) {
+		return this.fornecedorDAO.consultarPorID(id);
+	}
 }
