@@ -35,6 +35,9 @@ public class ProdutoBean {
 		produto.setFornecedor(fornecedor);
 		produtoRN.salvar(produto);
 		
+		// recarrega lista de produtos
+		listProduto = produtoRN.listar();
+		
 		return "/produto/listar?faces-redirect=true";
 	}
 	
