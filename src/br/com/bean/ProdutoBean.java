@@ -35,6 +35,10 @@ public class ProdutoBean {
 		produto.setFornecedor(fornecedor);
 		produtoRN.salvar(produto);
 		
+		// limpa o produto para evitar erro no request
+		produto = new Produto();
+		fornecedor = new Fornecedor();
+		
 		// recarrega lista de produtos
 		listProduto = produtoRN.listar();
 		

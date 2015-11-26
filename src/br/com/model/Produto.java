@@ -38,8 +38,18 @@ public class Produto implements Serializable {
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
 	
-	boolean ativo = true;
+	private boolean ativo = true;
 	
+	private double valor;
+	
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
 	public boolean isAtivo() {
 		return ativo;
 	}

@@ -54,6 +54,12 @@
 						value="#{produto.fornecedor.nome} - #{produto.fornecedor.CNPJ}" />
 				</p:column>
 
+				<p:column filterBy="#{produto.fornecedor.valor}"
+					sortBy="#{produto.valor}" headerText="Valor">
+					<h:outputText
+						value="#{produto.valor}" />
+				</p:column>
+
 				<p:column headerText="Ações">
 					<p:commandButton action="#{produtoBean.exibirAlterar}" ajax="false"
 						icon="ui-icon-pencil">

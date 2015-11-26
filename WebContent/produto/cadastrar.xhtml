@@ -36,6 +36,15 @@
 						<p:ajax update="messages" event="blur" />
 					</p:inputMask>
 
+					<p:outputLabel for="valor" value="Valor" />
+					<p:inputText maxlength="15" size="20" id="valor" required="true"
+						min="0" value="#{produtoBean.produto.valor}"
+						requiredMessage="Preencha este campo com o valor do Produto">
+						<f:convertNumber pattern="#,##0.00" type="currency"
+							currencySymbol="R$" />
+						<p:ajax update="messages" process="valor" event="change" />
+					</p:inputText>
+
 					<p:outputLabel value="Quantidade" for="quantidade" />
 					<p:spinner id="quantidade" required="true" min="0"
 						value="#{produtoBean.produto.quantidadeEstoque}">
