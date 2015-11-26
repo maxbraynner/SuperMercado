@@ -8,7 +8,6 @@ import javax.faces.bean.RequestScoped;
 
 import br.com.model.Cliente;
 import br.com.model.Endereco;
-import br.com.model.Fornecedor;
 import br.com.regranegocio.ClienteRN;
 
 @ManagedBean(name = "clienteBean")
@@ -18,8 +17,8 @@ public class ClienteBean {
 	private Endereco endereco = new Endereco();
 	private List<Cliente> listaClientes;
 	
-	// Lista usada para organização da tela listagem de clientes
-	private List<Fornecedor> clientesFiltrados;
+	// Lista usada para organização da tela listar de clientes
+	private List<Cliente> clientesFiltrados;
 	
 	@ManagedProperty(name="clienteRN", value="#{clienteRN}")
 	private ClienteRN clienteRN;
@@ -82,11 +81,11 @@ public class ClienteBean {
 		return this.listaClientes;
 	}
 
-	public List<Fornecedor> getClientesFiltrados() {
+	public List<Cliente> getClientesFiltrados() {
 		return clientesFiltrados;
 	}
 
-	public void setClientesFiltrados(List<Fornecedor> clientesFiltrados) {
+	public void setClientesFiltrados(List<Cliente> clientesFiltrados) {
 		this.clientesFiltrados = clientesFiltrados;
 	}
 
