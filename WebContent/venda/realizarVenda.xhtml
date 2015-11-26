@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="cadastro">
+			<p:messages id="messages" />
+
+			<p:fieldset legend="Venda">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="CPF Cliente:" for="cpf"/>
+					<p:inputMask id="cpf" label="CPF" value="" size="20"
+						maxlength="30" required="false" mask="999.999.999-99">
+						<f:validateLength minimum="1" maximum="30"/>
+					</p:inputMask>
+					
+					<h:outputLabel value="Id Produto:" />
+					<h:panelGroup>
+						<p:inputText value="" />&nbsp;&nbsp;
+						<p:commandButton value="Adicionar no carinho" />
+					</h:panelGroup>
+					<br/><br/><br/><br/><br/><br/>
+					
+					<p:dataTable var="car" value="">
+					    <p:column headerText="Id">
+					        <h:outputText value="" />
+					    </p:column>
+					 
+					    <p:column headerText="Título">
+					        <h:outputText value="" />
+					    </p:column>
+					 
+					    <p:column headerText="Marca">
+					        <h:outputText value="" />
+					    </p:column>
+					 
+					    <p:column headerText="Quantidade">
+					        <h:outputText value="" />
+					    </p:column>
+					    
+					    <p:column headerText="Ações">
+							<p:commandButton style="margin-left: 158px"
+								icon="ui-icon-trash"
+								actionListener="#{carrinho.excluirProduto}" >
+								<p:confirm header="Confirmation"
+									message="Deseja realmente excluir?" icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
+					
+					</p:dataTable>	
+								
+				</h:panelGrid>
+			</p:fieldset>
+
+			<br />
+			<p:commandButton value="Gerar Pagamento" />&nbsp;&nbsp;
+			<p:commandButton value="Cancelar Venda" />
+		</h:form>
+	</ui:define>
+</ui:composition>
