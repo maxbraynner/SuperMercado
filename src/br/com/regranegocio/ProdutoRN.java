@@ -41,4 +41,8 @@ public class ProdutoRN {
 		
 		produtoDAO.alterar(produto);
 	}
+	
+	public Produto consultarPorID(Integer id) {
+		return produtoDAO.consultarPorID(id);
+	}
 }
