@@ -34,6 +34,9 @@ public class Produto implements Serializable {
 	@Column(name = "quantidade_estoque")
 	private int quantidadeEstoque;
 	
+	@Column(name = "quantidade_minima_estoque")
+	private int quantidadeMinimaEstoque;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
@@ -42,6 +45,14 @@ public class Produto implements Serializable {
 	
 	private double valor;
 	
+	public int getQuantidadeMinimaEstoque() {
+		return quantidadeMinimaEstoque;
+	}
+
+	public void setQuantidadeMinimaEstoque(int quantidadeMinimaEstoque) {
+		this.quantidadeMinimaEstoque = quantidadeMinimaEstoque;
+	}
+
 	public double getValor() {
 		return valor;
 	}

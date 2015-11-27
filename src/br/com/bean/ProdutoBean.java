@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.model.Fornecedor;
 import br.com.model.Produto;
@@ -12,6 +13,7 @@ import br.com.regranegocio.FornecedorRN;
 import br.com.regranegocio.ProdutoRN;
 
 @ManagedBean
+@Scope("request")
 public class ProdutoBean {
 	private Produto produto = new Produto();
 	private String idFornecedor;
@@ -34,10 +36,6 @@ public class ProdutoBean {
 		
 		produto.setFornecedor(fornecedor);
 		produtoRN.salvar(produto);
-		
-		// limpa o produto para evitar erro no request
-		produto = new Produto();
-		fornecedor = new Fornecedor();
 		
 		// recarrega lista de produtos
 		listProduto = produtoRN.listar();
@@ -92,12 +90,8 @@ public class ProdutoBean {
 	}
 
 	public List<Fornecedor> getListFornecedor() {
-		if(listFornecedor!=null){
-			return listFornecedor;
-		}else{
-			listFornecedor = fornecedorRN.listar();
-			return listFornecedor;
-		}
+		listFornecedor = fornecedorRN.listar();
+		return listFornecedor;
 	}
 
 	public void setListFornecedor(List<Fornecedor> listFornecedor) {

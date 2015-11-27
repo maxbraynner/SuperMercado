@@ -51,6 +51,12 @@
 						<p:ajax update="messages" event="blur" />
 					</p:spinner>
 
+					<p:outputLabel value="Mínimo no Estoque" for="quantidadeMinima" />
+					<p:spinner id="quantidadeMinima" required="true" min="0"
+						value="#{produtoBean.produto.quantidadeMinimaEstoque}">
+						<p:ajax update="messages" event="blur" />
+					</p:spinner>
+
 					<p:outputLabel for="fornecedor" value="Fornecedor" />
 					<p:selectOneMenu id="fornecedor"
 						value="#{produtoBean.idFornecedor}" required="true">

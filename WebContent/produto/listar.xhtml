@@ -44,8 +44,8 @@
 				</p:column>
 
 				<p:column filterBy="#{produto.quantidadeEstoque}"
-					sortBy="#{produto.quantidadeEstoque}" headerText="Quantidade">
-					<h:outputText value="#{produto.quantidadeEstoque}" />
+					sortBy="#{produto.quantidadeEstoque}" headerText="Quantidade/Mínima">
+					<h:outputText value="#{produto.quantidadeEstoque} / #{produto.quantidadeMinimaEstoque}" />
 				</p:column>
 
 				<p:column filterBy="#{produto.fornecedor.nome}"
