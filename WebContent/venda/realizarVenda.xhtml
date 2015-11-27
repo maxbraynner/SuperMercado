@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -10,60 +10,45 @@
 	<ui:define name="menu">
 		<ui:include src="/menu/menuPrincipal.xhtml" />
 	</ui:define>
-
+	
 	<ui:define name="conteudo">
-		<h:form id="cadastro">
-			<p:messages id="messages" />
+	
+	<h:form id="busca">
+		<h:messages />
+		<h:panelGrid columns="2">
+			<h:outputText value="Id do produto: " for="busca"/>
+			<h:inputText required="true" value="#{vendaBean.produtoId}"
+				maxlength="10" size="5"/>
+				
+			<h:commandButton value="Buscar produto" action="#{vendaBean.addProduto}" />
+		</h:panelGrid>
+	</h:form>
+	
+	<h:form>
+		<p:dataTable id="tabela" var="produto"
+			value="#{vendaBean.listProduto}"
+			emptyMessage="Não há produtos no carrinho">	
+			
+			<f:facet name="header">
+				<h:outputText value="Listagem de Produtos da Venda" />
+			</f:facet>
+			
+			<f:facet name="footer">
+				<h:outputText value="Final da listagem" />
+			</f:facet>
+			
+			<p:column headerText="Título">
+				<h:outputText value="#{produto.titulo}" />
+			</p:column>
 
-			<p:fieldset legend="Venda">
-				<h:panelGrid columns="2">
-					<h:outputLabel value="CPF Cliente:" for="cpf"/>
-					<p:inputMask id="cpf" label="CPF" value="" size="20"
-						maxlength="30" required="false" mask="999.999.999-99">
-						<f:validateLength minimum="1" maximum="30"/>
-					</p:inputMask>
-					
-					<h:outputLabel value="Id Produto:" />
-					<h:panelGroup>
-						<p:inputText value="" />&nbsp;&nbsp;
-						<p:commandButton value="Adicionar no carinho" />
-					</h:panelGroup>
-					<br/><br/><br/><br/><br/><br/>
-					
-					<p:dataTable var="car" value="">
-					    <p:column headerText="Id">
-					        <h:outputText value="" />
-					    </p:column>
-					 
-					    <p:column headerText="TÃ­tulo">
-					        <h:outputText value="" />
-					    </p:column>
-					 
-					    <p:column headerText="Marca">
-					        <h:outputText value="" />
-					    </p:column>
-					 
-					    <p:column headerText="Quantidade">
-					        <h:outputText value="" />
-					    </p:column>
-					    
-					    <p:column headerText="AÃ§Ãµes">
-							<p:commandButton style="margin-left: 158px"
-								icon="ui-icon-trash"
-								actionListener="#{carrinho.excluirProduto}" >
-								<p:confirm header="Confirmation"
-									message="Deseja realmente excluir?" icon="ui-icon-alert" />
-							</p:commandButton>
-						</p:column>
-					
-					</p:dataTable>	
-								
-				</h:panelGrid>
-			</p:fieldset>
+			<p:column headerText="Marca">
+				<h:outputText value="#{produto.marca}" />
+			</p:column>
 
-			<br />
-			<p:commandButton value="Gerar Pagamento" />&nbsp;&nbsp;
-			<p:commandButton value="Cancelar Venda" />
-		</h:form>
-	</ui:define>
+			<p:column headerText="Valor">
+				<h:outputText value="#{produto.valor}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:define>
 </ui:composition>

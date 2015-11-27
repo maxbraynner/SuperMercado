@@ -3,32 +3,30 @@ package br.com.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 
 import br.com.model.Produto;
 import br.com.model.Venda;
 import br.com.regranegocio.ProdutoRN;
 import br.com.regranegocio.VendaRN;
 
-@ManagedBean
-@Scope("request")
+@ManagedBean(name = "vendaBean")
+@SessionScoped
 public class VendaBean {
 	private Integer produtoId;
 	private List<Produto> listProduto = new ArrayList<Produto>();
 	private Venda venda = new Venda();
+	private Produto produto = new Produto();
 	
 	@Autowired
 	private VendaRN vendaRN;
 	
-	@Autowired
+	@ManagedProperty(name="produtoRN", value="#{produtoRN}")
 	private ProdutoRN produtoRN;
-	
-	public Venda getVenda() {
-		return venda;
-	}
 	
 	public void addProduto(){
 		if (produtoId!=null && produtoId.intValue() != 0) {
@@ -40,7 +38,11 @@ public class VendaBean {
 			}
 		}
 	}
-
+	
+	public Venda getVenda() {
+		return venda;
+	}
+	
 	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
@@ -57,6 +59,26 @@ public class VendaBean {
 		this.produtoRN = produtoRN;
 	}
 
+	public List<Produto> getListProduto() {
+		return listProduto;
+	}
+
+	public void setListProduto(List<Produto> listProduto) {
+		this.listProduto = listProduto;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	
+	public ProdutoRN getProdutoRN() {
+		return produtoRN;
+	}
+
 	public Integer getProdutoId() {
 		return produtoId;
 	}
@@ -64,12 +86,4 @@ public class VendaBean {
 	public void setProdutoId(Integer produtoId) {
 		this.produtoId = produtoId;
 	}
-
-	public List<Produto> getListProduto() {
-		return listProduto;
-	}
-
-	public void setListProduto(List<Produto> listProduto) {
-		this.listProduto = listProduto;
-	} 
 }
