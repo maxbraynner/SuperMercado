@@ -6,7 +6,7 @@
 	<display-name>ProjetoSupermercado</display-name>
 
 	<welcome-file-list>
-		<welcome-file>index.jsf</welcome-file>
+		<welcome-file>apresentacao.jsf</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
