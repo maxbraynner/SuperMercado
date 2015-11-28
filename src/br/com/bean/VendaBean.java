@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,12 +15,13 @@ import br.com.regranegocio.ProdutoRN;
 import br.com.regranegocio.VendaRN;
 
 @ManagedBean(name = "vendaBean")
-@RequestScoped
+@SessionScoped
 public class VendaBean {
 	private Integer produtoId;
 	private List<Produto> listProduto = new ArrayList<Produto>();
 	private Venda venda = new Venda();
 	private Produto produto = new Produto();
+	private double totalVenda;
 	
 	@Autowired
 	private VendaRN vendaRN;
@@ -28,15 +29,30 @@ public class VendaBean {
 	@ManagedProperty(name="produtoRN", value="#{produtoRN}")
 	private ProdutoRN produtoRN;
 	
+	/**
+	 * A cada novo produto adicionado na Venda, a lista de produtos da venda
+	 * é incrementada com aquele produto.
+	 * É também realizado o cálculo do valor parcial da compra.
+	 */
 	public void addProduto(){
-		if (produtoId!=null && produtoId.intValue() != 0) {
+		Produto produto = produtoRN.consultarPorID(produtoId);
+		
+		if (produto != null && produto.isAtivo()) {
 			try {
-				Produto produto = produtoRN.consultarPorID(produtoId);
 				listProduto.add(produto);
+				this.calcularTotal(produto);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * O valor da venda do produto é calculado de forma dinâmica.
+	 * A cada valor adicionada na lista de compras o valor total é incrementado.
+	 */
+	private void calcularTotal(Produto produto) {
+		this.setTotalVenda(this.totalVenda + produto.getValor()); 
 	}
 	
 	public Venda getVenda() {
@@ -85,5 +101,13 @@ public class VendaBean {
 
 	public void setProdutoId(Integer produtoId) {
 		this.produtoId = produtoId;
+	}
+
+	public double getTotalVenda() {
+		return totalVenda;
+	}
+
+	public void setTotalVenda(double totalVenda) {
+		this.totalVenda = totalVenda;
 	}
 }

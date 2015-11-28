@@ -14,17 +14,18 @@
 	<ui:define name="conteudo">
 	
 	<h:form id="busca">
-		<h:messages />
-		<h:panelGrid columns="2">
-			<h:outputText value="Id do produto: " for="busca"/>
-			<h:inputText required="true" value="#{vendaBean.produtoId}"
+		<p:messages />
+		<p:panelGrid columns="2" styleClass="semBorda">
+			<p:outputLabel value="Código do produto: " for="busca"/>
+			<p:inputText required="true" value="#{vendaBean.produtoId}"
 				maxlength="10" size="5"/>
 				
-			<h:commandButton value="Buscar produto" action="#{vendaBean.addProduto}" />
-		</h:panelGrid>
+			<p:commandButton value="Adicionar produto" action="#{vendaBean.addProduto}" 
+				update="listaProdutos, busca"/>
+		</p:panelGrid>
 	</h:form>
 	
-	<h:form>
+	<h:form id="listaProdutos">
 		<p:dataTable id="tabela" var="produto"
 			value="#{vendaBean.listProduto}"
 			emptyMessage="Não há produtos no carrinho">	
@@ -49,6 +50,11 @@
 				<h:outputText value="#{produto.valor}" />
 			</p:column>
 		</p:dataTable>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Total da Venda"/>
+			<h:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7"/>
+		</h:panelGrid>
+		
 	</h:form>
 </ui:define>
 </ui:composition>
