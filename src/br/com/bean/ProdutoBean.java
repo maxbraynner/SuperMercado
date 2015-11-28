@@ -2,7 +2,8 @@ package br.com.bean;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+
+import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

@@ -11,13 +11,25 @@
 	<title>Supermercado</title>
 	<h:outputStylesheet library="css" name="stilo.css" />
 </h:head>
-<h:body>
+<h:body>	
+	<div id="logo">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:graphicImage library="imagens" name ="logo-para-supermercado.jpg" height ="90"/>
+				<h1 style="text-align: center; font-family:Arial"> Supermercados BestPrice</h1>
+			</h:panelGrid>
+		</h:form>
+	</div>
 	<div id="cabecalho">
 		<ui:insert name="menu" />
 	</div>
-
 	<div id="conteudo">
 		<ui:insert name="conteudo" />
+	</div>
+	<div id = "roadape" style="margin-top: 10px;margin-bottom:20px;font-style: italic;text-align: center">
+	 	<hr/>
+		Versao 1.0 do software.
+		<br>Todos os direitos reservados pela equipe de desenvolvimento 1.</br>
 	</div>
 </h:body>
 </html>
