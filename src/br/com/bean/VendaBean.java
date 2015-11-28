@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +15,7 @@ import br.com.regranegocio.ProdutoRN;
 import br.com.regranegocio.VendaRN;
 
 @ManagedBean(name = "vendaBean")
-@SessionScoped
+@RequestScoped
 public class VendaBean {
 	private Integer produtoId;
 	private List<Produto> listProduto = new ArrayList<Produto>();
