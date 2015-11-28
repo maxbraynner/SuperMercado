@@ -16,7 +16,7 @@ public class Cliente extends Pessoa {
 	
 	private String matricula;
 
-	private boolean ativo;
+	private boolean ativo = true;
 	
 	// Compras que o cliente realizou
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")

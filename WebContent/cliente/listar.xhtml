@@ -28,12 +28,6 @@
 			
 			<p:column filterBy="#{cliente.id}" headerText="Id"
 				sortBy="#{cliente.id}">
-				<h:commandLink action="#{clienteBean.ativar}">
-					<h:graphicImage library="imagens" name="ativo_#{cliente.ativo}.png"
-						style="border:0;margin-right:10px"/>	
-					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}"/>	
-				</h:commandLink>
-					
 				<h:outputText value="#{cliente.id}" />
 			</p:column>	
 	
