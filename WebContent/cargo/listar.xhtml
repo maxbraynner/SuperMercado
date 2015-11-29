@@ -33,7 +33,7 @@
 				</p:column>
 
 				<p:column filterBy="#{cargo.salario}" sortBy="#{cargo.salario}"
-					headerText="Salário">
+					headerText="Salário R$">
 					<h:outputText value="#{cargo.salario}">
 						<f:convertNumber pattern="#,##0.00" type="currency"
 							currencySymbol="R$" />

@@ -44,8 +44,10 @@
 				</p:column>
 
 				<p:column filterBy="#{produto.quantidadeEstoque}"
-					sortBy="#{produto.quantidadeEstoque}" headerText="Quantidade/Mínima">
-					<h:outputText value="#{produto.quantidadeEstoque} / #{produto.quantidadeMinimaEstoque}" />
+					sortBy="#{produto.quantidadeEstoque}"
+					headerText="Quantidade/Mínima">
+					<h:outputText
+						value="#{produto.quantidadeEstoque} / #{produto.quantidadeMinimaEstoque}" />
 				</p:column>
 
 				<p:column filterBy="#{produto.fornecedor.nome}"
@@ -55,9 +57,11 @@
 				</p:column>
 
 				<p:column filterBy="#{produto.fornecedor.valor}"
-					sortBy="#{produto.valor}" headerText="Valor">
-					<h:outputText
-						value="#{produto.valor}" />
+					sortBy="#{produto.valor}" headerText="Valor R$">
+					<h:outputText value="#{produto.valor}">
+						<f:convertNumber pattern="#,##0.00" type="currency"
+							currencySymbol="R$" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Ações">
@@ -68,7 +72,8 @@
 					</p:commandButton>
 
 					<p:commandButton style="margin-left: 10px" icon="ui-icon-trash"
-						actionListener="#{produtoBean.excluir(produto)}" update="tabela" ajax="true">	
+						actionListener="#{produtoBean.excluir(produto)}" update="tabela"
+						ajax="true">
 						<p:confirm header="Confirmation"
 							message="Deseja realmente excluir?" icon="ui-icon-alert" />
 					</p:commandButton>
