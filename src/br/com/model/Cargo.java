@@ -1,5 +1,7 @@
 package br.com.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cargo")
-public class Cargo {
+public class Cargo implements Serializable{
 	
+	private static final long serialVersionUID = 7835020162250732028L;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
