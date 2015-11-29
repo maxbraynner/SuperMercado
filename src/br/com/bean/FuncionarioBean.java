@@ -2,6 +2,7 @@ package br.com.bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -23,12 +24,18 @@ public class FuncionarioBean {
 
 	private List<Funcionario> funcionariosFiltrados;
 	private List<Funcionario> listaFuncionarios;
+	private List<Funcionario> listGerentes;
 
 	@ManagedProperty(name = "funcionarioRN", value = "#{funcionarioRN}")
 	private FuncionarioRN funcionarioRN;
 
 	@ManagedProperty(name = "cargoRN", value = "#{cargoRN}")
 	private CargoRN cargoRN;
+	
+	@PostConstruct
+	public void init() {
+		funcionario.setGerente(new Funcionario());
+	}
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
 		try {
@@ -37,12 +44,24 @@ public class FuncionarioBean {
 
 			funcionario.setCargo(cargo);
 			funcionario.setEndereco(endereco);
+			
+			// seta o gerente para nulo caso não tenha
+			if (funcionario.getGerente().getId() == null || funcionario.getGerente().getId() == 0) {
+				funcionario.setGerente(null);
+			}else {
+				Funcionario gerente = funcionarioRN.consularPorId(funcionario.getGerente().getId());
+				
+				// consulta o gerente completo, pois o objeto contem apenas o ID
+				funcionario.setGerente(gerente);
+			}
 
 			funcionarioRN.salvar(funcionario);
+			
 			JSFUtil.adicionarMensagemSucesso("Funcionario cadastrado com sucesso. ");
 			return "/funcionario/listar";
 		} catch (Exception e) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar funcion�rio. ");
+			e.printStackTrace();
+			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar funcionário. ");
 			return "/funcionario/cadastrar";
 		}
 
@@ -57,9 +76,16 @@ public class FuncionarioBean {
 			 */
 			this.setEndereco(getFuncionario().getEndereco());
 			this.setCargo(funcionario.getCargo());
+			
+			// inicializa o gerente caso necessário
+			if (funcionario.getGerente() == null) {
+				funcionario.setGerente(new Funcionario());
+			}
+			
 			return "/funcionario/cadastrar";
 		} catch (Exception e) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentrar editar funcion�rio. ");
+			e.printStackTrace();
+			JSFUtil.adicionarMensagemErro("Erro ao tentrar editar funcionário. ");
 			return "/funcionario/listar";
 		}
 
@@ -69,9 +95,9 @@ public class FuncionarioBean {
 	public String excluir() throws InstantiationException, IllegalAccessException {
 		try {
 			funcionarioRN.excluir(funcionario);
-			JSFUtil.adicionarMensagemSucesso("Funcion�rio exclu�do com sucesso. s");
+			JSFUtil.adicionarMensagemSucesso("Funcionário excluído com sucesso. s");
 		} catch (Exception e) {
-			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir funcion�rio. ");
+			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir funcionário. ");
 		}
 		return "/funcionario/listar";
 	}
@@ -133,5 +159,16 @@ public class FuncionarioBean {
 
 	public void setCargoRN(CargoRN cargoRN) {
 		this.cargoRN = cargoRN;
+	}
+
+	public List<Funcionario> getListGerentes() {
+		if (listGerentes==null) {
+			listGerentes = funcionarioRN.consultarGerentes();
+		}
+		return listGerentes;
+	}
+
+	public void setListGerentes(List<Funcionario> listGerentes) {
+		this.listGerentes = listGerentes;
 	}
 }
