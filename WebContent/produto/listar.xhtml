@@ -50,6 +50,11 @@
 						value="#{produto.quantidadeEstoque} / #{produto.quantidadeMinimaEstoque}" />
 				</p:column>
 
+				<p:column headerText="Status do produto">
+					<h:outputText
+						rendered="#{produto.quantidadeMinimaEstoque >= produto.quantidadeEstoque}"
+						value="Produtoa cabando" style="color:red;"/>
+				</p:column>
 				<p:column filterBy="#{produto.fornecedor.nome}"
 					sortBy="#{produto.fornecedor.nome}" headerText="Fornecedor">
 					<h:outputText
