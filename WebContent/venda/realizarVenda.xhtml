@@ -10,64 +10,87 @@
 	<ui:define name="menu">
 		<ui:include src="/menu/menuPrincipal.xhtml" />
 	</ui:define>
-	
+
 	<ui:define name="conteudo">
-	
-	<h:form id="busca">
-		<p:messages />
-		<p:panelGrid columns="2" styleClass="semBorda">
-			<p:outputLabel value="Código do produto: " for="busca"/>
-			<p:inputText required="true" value="#{vendaBean.produtoId}"
-				maxlength="10" size="5"/>
-				
-			<p:commandButton value="Adicionar produto" action="#{vendaBean.adicionarProduto}" 
-				update="listaProdutos, busca"/>
-		</p:panelGrid>
-	</h:form>
-	
-	<h:form id="listaProdutos">
-		<p:dataTable id="tabela" var="produto"
-			value="#{vendaBean.listProduto}"
-			emptyMessage="Não há produtos no carrinho">	
-			
-			<f:facet name="header">
-				<h:outputText value="Listagem de Produtos da Venda" />
-			</f:facet>
-			
-			<f:facet name="footer">
-				<h:outputText value="Final da listagem" />
-			</f:facet>
-			
-			<p:column headerText="Título">
-				<h:outputText value="#{produto.titulo}" />
-			</p:column>
 
-			<p:column headerText="Marca">
-				<h:outputText value="#{produto.marca}" />
-			</p:column>
+		<h:form id="busca">
+			<p:messages />
+			<p:panelGrid columns="2" styleClass="semBorda">
+				<p:outputLabel value="Código do produto: " for="busca" />
+				<p:inputText required="true" value="#{vendaBean.produtoId}"
+					maxlength="10" size="5" />
 
-			<p:column headerText="Valor">
-				<h:outputText value="#{produto.valor}" />
-			</p:column>
-			<p:column headerText="Ações">
-				<p:commandButton action="#{vendaBean.deletarProduto}" style="margin-left: 10px"
-					icon="ui-icon-trash" update=":listaProdutos"
-					onclick="if (!confirm('Confirma a exclusão do item #{produto.titulo}?')) return false;">
-					<f:setPropertyActionListener value="#{produto}" target="#{vendaBean.produto}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-		<h:panelGrid columns="2">
-			<p:outputLabel value="Total da Venda" style="height:50px"/>
-			<p:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7" >
-				<f:convertNumber maxFractionDigits="2"/>
-			</p:inputText>
-		</h:panelGrid>
-		<br/><br/>
-		<p:commandButton value="Pagamento" style="height:50px"/>
-	
-		<p:commandButton value="Cancelar venda" action="#{vendaBean.cancelarVenda}"
-			update=":listaProdutos" style="height:50px"/>
-	</h:form>
-</ui:define> 
+				<p:commandButton value="Adicionar produto"
+					action="#{vendaBean.adicionarProduto}"
+					update="listaProdutos, busca" />
+			</p:panelGrid>
+		</h:form>
+
+		<h:form id="listaProdutos">
+			<p:dataTable id="tabela" var="produto"
+				value="#{vendaBean.listProduto}"
+				emptyMessage="Não há produtos no carrinho">
+
+				<f:facet name="header">
+					<h:outputText value="Listagem de Produtos da Venda" />
+				</f:facet>
+
+				<f:facet name="footer">
+					<h:outputText value="Final da listagem" />
+				</f:facet>
+
+				<p:column headerText="Título">
+					<h:outputText value="#{produto.titulo}" />
+				</p:column>
+
+				<p:column headerText="Marca">
+					<h:outputText value="#{produto.marca}" />
+				</p:column>
+
+				<p:column headerText="Valor R$">
+					<h:outputText value="#{produto.valor}">
+						<f:convertNumber pattern="#,##0.00" type="currency"
+							currencySymbol="R$" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandButton action="#{vendaBean.deletarProduto}"
+						style="margin-left: 10px" icon="ui-icon-trash"
+						update=":listaProdutos">
+						<f:setPropertyActionListener value="#{produto}"
+							target="#{vendaBean.produto}" />
+						<p:confirm header="Confirmation"
+							message="Deseja realmente excluir #{produto.titulo}?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Total da Venda: R$" style="height:50px" />
+				<h:outputText value="#{vendaBean.totalVenda}" readonly="true"
+					size="7">
+					<f:convertNumber pattern="#,##0.00" type="currency"
+						currencySymbol="R$" />
+				</h:outputText>
+			</h:panelGrid>
+			<br />
+			<br />
+			<p:commandButton value="Pagamento" style="height:50px" />
+
+			<p:commandButton value="Cancelar venda"
+				action="#{vendaBean.cancelarVenda}" update=":listaProdutos"
+				style="height:50px" />
+		</h:form>
+
+		<h:form>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					update=":msgmGlobal" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+
+	</ui:define>
 </ui:composition>
