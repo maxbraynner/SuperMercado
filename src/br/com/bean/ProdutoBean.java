@@ -45,7 +45,7 @@ public class ProdutoBean {
 			return "/produto/listar?faces-redirect=true";
 		} catch (Exception e) {
 			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar produto. ");
-			return "/produto/cadastrar?faces-redirect=true";
+			return "/produto/cadastrar";
 		}
 	}
 
@@ -55,7 +55,7 @@ public class ProdutoBean {
 	public void excluir(Produto produto) {
 		try {
 			produtoRN.excluir(produto);
-			JSFUtil.adicionarMensagemSucesso("Produto excluído com sucesso. ");
+			JSFUtil.adicionarMensagemSucesso("Produto excluï¿½do com sucesso. ");
 			// consulta novamente para atualizar a listagem
 			listProduto = produtoRN.listar();
 		} catch (Exception e) {
