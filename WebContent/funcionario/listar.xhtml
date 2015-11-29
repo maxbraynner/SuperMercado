@@ -25,12 +25,6 @@
 
 				<p:column filterBy="#{funcionario.id}" headerText="Id"
 					sortBy="#{funcionario.id}">
-					<h:commandLink action="#{funcionarioBean.ativar}">
-						<h:graphicImage library="imagens" name="ativo_#{funcionario.ativo}.png"
-							style="border:0;margin-right:10px"/>	
-							<f:setPropertyActionListener value="#{funcionario}" target="#{funcionarioBean.funcionario}"/>	
-					</h:commandLink>
-					
 					<h:outputText value="#{funcionario.id}" />
 				</p:column>
 

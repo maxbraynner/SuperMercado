@@ -47,17 +47,6 @@ public class ClienteBean {
 		return "/cliente/listar";
 	}
 	
-	// Ativação OU inativação de um cliente
-	public void ativar() throws InstantiationException, IllegalAccessException {
-		if (cliente.isAtivo()) {
-			cliente.setAtivo(false);
-		} else {
-			cliente.setAtivo(true);
-		}
-		
-		clienteRN.salvar(cliente);
-	}
-	
 	public Cliente getCliente() {
 		return cliente;
 	}

@@ -87,6 +87,9 @@
 						<f:selectItems value="#{funcionarioBean.listCargo}" var="cargo"
 							itemLabel="#{cargo.nome}" itemValue="#{cargo.id}" />
 					</p:selectOneMenu>
+					
+					<h:outputText value="Ativo" />
+					<p:selectBooleanCheckbox value="#{funcionarioBean.funcionario.ativo}" />
 				</h:panelGrid>
 			</p:fieldset>
 			<br />

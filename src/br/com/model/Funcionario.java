@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,7 +22,7 @@ public class Funcionario extends Pessoa {
 
 	private static final long serialVersionUID = 8380268096714238308L;
 	
-	private boolean ativo;
+	private boolean ativo = true;
 
 	@Column(unique = true, nullable = false)
 	private String matricula;
@@ -33,8 +34,7 @@ public class Funcionario extends Pessoa {
 	private Set<Funcionario> gerenciados = new HashSet<Funcionario>();
 
 	// todos os cargos que o funcionário já exerceu
-	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.DELETE })
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "id_cargo")
 	@org.hibernate.annotations.ForeignKey(name = "fk_funcionario_cargo")
 	private Cargo cargo;

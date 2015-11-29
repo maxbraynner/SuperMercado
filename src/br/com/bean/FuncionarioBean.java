@@ -36,8 +36,6 @@ public class FuncionarioBean {
 		funcionario.setCargo(cargo);
 		funcionario.setEndereco(endereco);
 		
-		// Funcionario ao ser cadastrado está automaticamente ativo no sistema	
-		funcionario.setAtivo(true);
 		funcionarioRN.salvar(funcionario);
 		
 		return "/funcionario/listar";
@@ -68,17 +66,6 @@ public class FuncionarioBean {
 		return this.listaFuncionarios;
 	}
 
-	// Ativação OU inativação de um funcionario
-	public void ativar() throws InstantiationException, IllegalAccessException {
-		if (funcionario.isAtivo()) {
-			funcionario.setAtivo(false);
-		} else {
-			funcionario.setAtivo(true);
-		}
-			
-		funcionarioRN.salvar(funcionario);
-		}
-	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
