@@ -140,3 +140,4 @@ public class VendaBean {
 		this.totalVenda = totalVenda;
 	}
 }
+
