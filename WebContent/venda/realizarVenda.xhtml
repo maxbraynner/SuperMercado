@@ -20,7 +20,7 @@
 			<p:inputText required="true" value="#{vendaBean.produtoId}"
 				maxlength="10" size="5"/>
 				
-			<p:commandButton value="Adicionar produto" action="#{vendaBean.addProduto}" 
+			<p:commandButton value="Adicionar produto" action="#{vendaBean.adicionarProduto}" 
 				update="listaProdutos, busca"/>
 		</p:panelGrid>
 	</h:form>
@@ -49,10 +49,19 @@
 			<p:column headerText="Valor">
 				<h:outputText value="#{produto.valor}" />
 			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton action="#{vendaBean.deletarProduto}" style="margin-left: 10px"
+					icon="ui-icon-trash" update=":listaProdutos"
+					onclick="if (!confirm('Confirma a exclusão do item #{produto.titulo}?')) return false;">
+					<f:setPropertyActionListener value="#{produto}" target="#{vendaBean.produto}" />
+				</p:commandButton>
+			</p:column>
 		</p:dataTable>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Total da Venda"/>
-			<h:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7"/>
+			<h:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7">
+				<f:convertNumber maxFractionDigits="2"/>
+			</h:inputText>
 		</h:panelGrid>
 		
 	</h:form>

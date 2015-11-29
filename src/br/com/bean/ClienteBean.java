@@ -42,8 +42,9 @@ public class ClienteBean {
 	}
 	
 	// Exclusão do cliente
-	public void excluir() throws InstantiationException, IllegalAccessException {
+	public String excluir() throws InstantiationException, IllegalAccessException {
 		clienteRN.excluir(cliente);
+		return "/cliente/listar";
 	}
 	
 	// Ativação OU inativação de um cliente
@@ -75,7 +76,7 @@ public class ClienteBean {
 	
 	// Lista de todos os clientes cadastrados
 	public List<Cliente> getListaClientes() throws InstantiationException, IllegalAccessException {
-			this.listaClientes = clienteRN.listar();
+		this.listaClientes = clienteRN.listar();
 		
 		return this.listaClientes;
 	}

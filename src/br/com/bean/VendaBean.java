@@ -34,13 +34,13 @@ public class VendaBean {
 	 * é incrementada com aquele produto.
 	 * É também realizado o cálculo do valor parcial da compra.
 	 */
-	public void addProduto(){
+	public void adicionarProduto(){
 		Produto produto = produtoRN.consultarPorID(produtoId);
 		
 		if (produto != null && produto.isAtivo()) {
 			try {
 				listProduto.add(produto);
-				this.calcularTotal(produto);
+				this.incrementarTotal(produto);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -48,11 +48,37 @@ public class VendaBean {
 	}
 	
 	/**
-	 * O valor da venda do produto é calculado de forma dinâmica.
-	 * A cada valor adicionada na lista de compras o valor total é incrementado.
+	 * O produto é excluído da lista de venda.
+	 * E um novo cálculo do valor total é realizado.
 	 */
-	private void calcularTotal(Produto produto) {
+	public void deletarProduto() {
+		if(this.produto != null) {
+			try {
+				listProduto.remove(produto);
+				this.decrementarTotal(produto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	/**
+	 * O valor da venda dos produtos é calculado de forma dinâmica.
+	 * A cada produto adicionado na lista de compras o valor total é recalculado,
+	 * ocorre uma adição no total.
+	 */
+	private void incrementarTotal(Produto produto) {
 		this.setTotalVenda(this.totalVenda + produto.getValor()); 
+	}
+	
+	/**
+	 * O valor da venda dos produtos é calculado dinâmicamente.
+	 * A cada produto excluído na lista de compras o valor total é recalculado,
+	 * ocorre uma redução no total. 
+	 */
+	private void decrementarTotal(Produto produto) {
+		this.setTotalVenda(this.totalVenda - produto.getValor());
 	}
 	
 	public Venda getVenda() {
