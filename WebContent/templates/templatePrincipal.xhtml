@@ -11,12 +11,14 @@
 	<title>Supermercado</title>
 	<h:outputStylesheet library="css" name="stilo.css" />
 </h:head>
-<h:body>	
+<h:body>
+	<p:growl life="4000" id="msgmGlobal" />
 	<div id="logo">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:graphicImage library="imagens" name ="logo-para-supermercado.jpg" height ="90"/>
-				<h1> Supermercados BestPrice</h1>
+				<h:graphicImage library="imagens" name="logo-para-supermercado.jpg"
+					height="90" />
+				<h1>Supermercados BestPrice</h1>
 			</h:panelGrid>
 		</h:form>
 	</div>
@@ -26,12 +28,9 @@
 	<div id="conteudo">
 		<ui:insert name="conteudo" />
 	</div>
-	<div id = "roadape" class="footer">
-	 	<hr/>
-			Versao 1.0 do software.
-		<br/>
-			Todos os direitos reservados.
-		<br/>
+	<div id="roadape" class="footer">
+		<hr />
+		Versao 1.0 do software. <br /> Todos os direitos reservados. <br />
 	</div>
 </h:body>
 </html>

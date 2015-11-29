@@ -14,7 +14,6 @@
 	<ui:define name="conteudo">
 
 		<h:form id="cadastro">
-			<p:messages id="messages" />
 			<h:inputHidden value="#{funcionarioBean.funcionario.id}" />
 
 			<p:fieldset legend="Informações do Funcionário">
@@ -23,7 +22,7 @@
 					<p:inputText id="matricula" label="Matrícula"
 						value="#{funcionarioBean.funcionario.matricula}" size="20"
 						maxlength="30" required="true"
-						requiredMessage="Funcionario deve possuir uma matrícula associada">
+						requiredMessage="Informe a matricula. ">
 						<f:validateLength minimum="1" maximum="30" />
 					</p:inputText>
 
@@ -31,7 +30,7 @@
 					<p:inputMask id="cpf" label="CPF" mask="999.999.999-99"
 						value="#{funcionarioBean.funcionario.cpf}" size="20"
 						maxlength="30" required="true"
-						requiredMessage="Funcionario deve possuir um CPF associado">
+						requiredMessage="Informe o CPF. ">
 						<f:validateLength minimum="1" maximum="30" />
 					</p:inputMask>
 
@@ -39,7 +38,7 @@
 					<p:inputText id="nome" label="Nome"
 						value="#{funcionarioBean.funcionario.nome}" size="30"
 						maxlength="30" required="true"
-						requiredMessage="Você não tem nome?">
+						requiredMessage="Informe o nome. ">
 						<f:validateLength minimum="1" maximum="30" />
 					</p:inputText>
 
@@ -47,7 +46,7 @@
 					<p:inputText id="sobrenome" label="Sobrenome"
 						value="#{funcionarioBean.funcionario.sobrenome}" size="30"
 						maxlength="30" required="true"
-						requiredMessage="Você não tem sobrenome?">
+						requiredMessage="Informe o sobrenome. ">
 						<f:validateLength minimum="1" maximum="30" />
 					</p:inputText>
 
@@ -55,41 +54,41 @@
 					<p:panelGrid>
 						<p:inputText id="email" label="e-Mail"
 							value="#{funcionarioBean.funcionario.email}" size="50"
-							maxlength="50" required="true" validatorMessage="e-mail inválido">
+							maxlength="50" required="true" validatorMessage="Informe o e-mail. ">
 							<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
 						</p:inputText>
-						<p:message for="email" />
 					</p:panelGrid>
 
 					<p:outputLabel value="Telefone Residencial:" for="residencial" />
 					<p:inputMask id="residencial" label="Residencial"
 						mask="(99)9999-9999"
-						value="#{funcionarioBean.funcionario.telefone}" size="20" />
+						value="#{funcionarioBean.funcionario.telefone}" size="20" requiredMessage="Informe o telefone residencial. "/>
 
 					<p:outputLabel value="Celular:" for="celular" />
 					<p:inputMask id="celular" label="Celular" mask="(99)99999-9999"
 						value="#{funcionarioBean.funcionario.celular}" size="20"
-						required="true" />
+						required="true" requiredMessage="Informe o celular. "/>
 
 					<p:outputLabel value="Data de Contratação:" for="dataContratacao" />
 					<p:inputMask id="dataContratacao" label="Contratacao"
 						mask="99/99/9999"
 						value="#{funcionarioBean.funcionario.dataContratacao}"
-						required="true" size="25" maxlength="25">
+						required="true" size="25" maxlength="25" requiredMessage="Informe a data de contratação. ">
 						<f:convertDateTime dateStyle="medium" />
 					</p:inputMask>
 
 					<p:outputLabel for="cargo" value="Cargo" />
 					<p:selectOneMenu id="cargo" value="#{funcionarioBean.cargo.id}"
-						required="true">
+						required="true" requiredMessage="Informe o cargo. ">
 						<f:selectItem itemLabel="Selecione um Cargo"
 							noSelectionOption="true" />
 						<f:selectItems value="#{funcionarioBean.listCargo}" var="cargo"
 							itemLabel="#{cargo.nome}" itemValue="#{cargo.id}" />
 					</p:selectOneMenu>
-					
+
 					<h:outputText value="Ativo" />
-					<p:selectBooleanCheckbox value="#{funcionarioBean.funcionario.ativo}" />
+					<p:selectBooleanCheckbox
+						value="#{funcionarioBean.funcionario.ativo}" />
 				</h:panelGrid>
 			</p:fieldset>
 			<br />
@@ -100,40 +99,40 @@
 					<p:outputLabel value="CEP:" for="cep" />
 					<p:inputMask id="cep" label="CEP" mask="99.999-99"
 						value="#{funcionarioBean.endereco.cep}" required="true" size="10"
-						maxlength="10" />
+						maxlength="10" requiredMessage="Informe o CEP. "/>
 
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro" label="Logradouro"
 						value="#{funcionarioBean.endereco.logradouro}" required="true"
-						maxlength="120" />
+						maxlength="120" requiredMessage="Informe o logradouro. "/>
 
 					<p:outputLabel value="Número: " for="numero" />
 					<p:inputText id="numero" label="Número"
 						value="#{funcionarioBean.endereco.numero}" required="true"
-						size="10" maxlength="10" />
+						size="10" maxlength="10" requiredMessage="Informe o número do logradouro. "/>
 
 					<p:outputLabel value="Bairro:" for="bairro" />
 					<p:inputText id="bairro" label="Bairro"
-						value="#{funcionarioBean.endereco.bairro}" required="true" />
+						value="#{funcionarioBean.endereco.bairro}" required="true" requiredMessage="Informe o bairro. "/>
 
 					<p:outputLabel value="Cidade:" for="cidade" />
 					<p:inputText id="cidade" label="Cidade"
-						value="#{funcionarioBean.endereco.cidade}" required="true" />
+						value="#{funcionarioBean.endereco.cidade}" required="true" requiredMessage="Informe a cidade. "/>
 
 					<p:outputLabel value="Estado:" for="estado" />
 					<p:inputText id="estado" label="Cidade"
-						value="#{funcionarioBean.endereco.uf}" required="true" />
+						value="#{funcionarioBean.endereco.uf}" required="true" requiredMessage="Informe o estado. "/>
 
 					<p:outputLabel value="Complemento:" for="complemento" />
 					<p:inputText id="complemento" label="Complemento"
 						value="#{funcionarioBean.endereco.complemento}" size="100"
-						quired="false" />
+						quired="false" requiredMessage="Informe o complemento. "/>
 				</h:panelGrid>
 			</p:fieldset>
 			<br />
 
 			<p:commandButton value="Resetar" type="reset" />
-			<p:commandButton action="#{funcionarioBean.salvar}" value="Salvar" />
+			<p:commandButton action="#{funcionarioBean.salvar}" value="Salvar" update=":msgmGlobal"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
