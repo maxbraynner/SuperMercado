@@ -24,7 +24,7 @@ public class ClienteBean {
 	private ClienteRN clienteRN;
 	
 	// Salva um cliente no banco
-	public String salvar() throws InstantiationException, IllegalAccessException {
+	public String salvar() {
 		// Cliente quando é cadastrado está automaticamente ativo no sistema
 		cliente.setEndereco(endereco);
 		
