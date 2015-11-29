@@ -7,8 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.com.model.Produto;
 import br.com.model.Venda;
 import br.com.regranegocio.ProdutoRN;
@@ -23,7 +21,7 @@ public class VendaBean {
 	private Produto produto = new Produto();
 	private double totalVenda;
 	
-	@Autowired
+	@ManagedProperty(name="vendaRN", value="#{vendaRN}")
 	private VendaRN vendaRN;
 	
 	@ManagedProperty(name="produtoRN", value="#{produtoRN}")
