@@ -9,6 +9,7 @@ import javax.faces.bean.RequestScoped;
 import br.com.model.Cargo;
 import br.com.model.Endereco;
 import br.com.model.Funcionario;
+import br.com.regranegocio.CargoRN;
 import br.com.regranegocio.FuncionarioRN;
 
 @ManagedBean(name = "funcionarioBean")
@@ -17,16 +18,24 @@ public class FuncionarioBean {
 	private Funcionario funcionario = new Funcionario();
 	private Endereco endereco = new Endereco();
 	private Cargo cargo = new Cargo();
+	private List<Cargo> listCargo;
 	
 	private List<Funcionario> funcionariosFiltrados;
 	private List<Funcionario> listaFuncionarios;
 	
 	@ManagedProperty(name="funcionarioRN", value="#{funcionarioRN}")
 	private FuncionarioRN funcionarioRN;
+	
+	@ManagedProperty(name = "cargoRN", value="#{cargoRN}")
+	private CargoRN cargoRN;
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
-		funcionario.setEndereco(endereco);
+		// consulta o cargo que será inserido
+		cargo = cargoRN.consultarPorId(cargo.getId());
+
 		funcionario.setCargo(cargo);
+		funcionario.setEndereco(endereco);
+		
 		// Funcionario ao ser cadastrado está automaticamente ativo no sistema	
 		funcionario.setAtivo(true);
 		funcionarioRN.salvar(funcionario);
@@ -106,4 +115,20 @@ public class FuncionarioBean {
 		this.funcionarioRN = funcionarioRN;
 	}
 
+	public List<Cargo> getListCargo() {
+		listCargo = cargoRN.listar();
+		return listCargo;
+	}
+
+	public void setListCargo(List<Cargo> listCargo) {
+		this.listCargo = listCargo;
+	}
+
+	public CargoRN getCargoRN() {
+		return cargoRN;
+	}
+
+	public void setCargoRN(CargoRN cargoRN) {
+		this.cargoRN = cargoRN;
+	}
 }
