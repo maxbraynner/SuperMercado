@@ -58,12 +58,16 @@
 			</p:column>
 		</p:dataTable>
 		<h:panelGrid columns="2">
-			<h:outputLabel value="Total da Venda"/>
-			<h:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7">
+			<p:outputLabel value="Total da Venda" style="height:50px"/>
+			<p:inputText value="#{vendaBean.totalVenda}" readonly="true" size="7" >
 				<f:convertNumber maxFractionDigits="2"/>
-			</h:inputText>
+			</p:inputText>
 		</h:panelGrid>
-		
+		<br/><br/>
+		<p:commandButton value="Pagamento" style="height:50px"/>
+	
+		<p:commandButton value="Cancelar Venda" action="#{vendaBean.cancelarVenda}"
+			update=":listaProdutos" style="height:50px"/>
 	</h:form>
-</ui:define>
+</ui:define> 
 </ui:composition>

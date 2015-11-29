@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.model.Produto;
 import br.com.model.Venda;
@@ -77,6 +78,10 @@ public class VendaBean {
 	 */
 	private void decrementarTotal(Produto produto) {
 		this.setTotalVenda(this.totalVenda - produto.getValor());
+	}
+	
+	public void cancelarVenda() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("vendaBean");  
 	}
 	
 	public Venda getVenda() {
