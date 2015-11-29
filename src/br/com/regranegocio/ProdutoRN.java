@@ -13,7 +13,7 @@ import br.com.model.Produto;
 @Transactional
 public class ProdutoRN {
 
-	ProdutoDAO produtoDAO;
+	private ProdutoDAO produtoDAO;
 	
 	@Autowired
 	public ProdutoRN(ProdutoDAO produtoDAO) {
