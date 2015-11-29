@@ -49,8 +49,8 @@
 					</p:commandButton>
 
 					<p:commandButton action="#{funcionarioBean.excluir}" style="margin-left: 10px"
-						icon="ui-icon-trash" update=":listagem"
-						onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;">
+						icon="ui-icon-trash" 
+						onclick="if (!confirm('Confirma a exclusão do cliente #{funcionario.nome}?')) return false;" update=":listagem :msgmGlobal">
 						<f:setPropertyActionListener value="#{funcionario}"
 							target="#{funcionarioBean.funcionario}" />
 					</p:commandButton>

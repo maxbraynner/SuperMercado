@@ -7,38 +7,49 @@ import javax.faces.bean.ManagedProperty;
 
 import br.com.model.Fornecedor;
 import br.com.regranegocio.FornecedorRN;
+import br.com.util.JSFUtil;
 
 @ManagedBean
 public class FornecedorBean {
 	private Fornecedor fornecedor = new Fornecedor();
 	private List<Fornecedor> listFornecedor;
-	
-	@ManagedProperty(name="fornecedorRN", value="#{fornecedorRN}")
-	private FornecedorRN fornecedorRN; 
-	
+
+	@ManagedProperty(name = "fornecedorRN", value = "#{fornecedorRN}")
+	private FornecedorRN fornecedorRN;
+
 	// atributo usado pelo componente "dataTable"
 	private List<Fornecedor> fornecedoresFiltrados;
 
-	public String salvar(){		
-		fornecedorRN.salvar(fornecedor);
-		
-		// retorna para tela de listagem
-		return "/fornecedor/listar?faces-redirect=true";
+	public String salvar() {
+		try {
+			fornecedorRN.salvar(fornecedor);
+			JSFUtil.adicionarMensagemSucesso("fornecedor cadastrado com sucesso. ");
+			// retorna para tela de listagem
+			return "/fornecedor/listar?faces-redirect=true";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("erro ao tentar cadastrar fornecedor. ");
+			return "/fornecedor/cadastrar";
+		}
 	}
-	
-	public void excluir(Fornecedor fornecedor){
-		// exclui o fornecedor
-		fornecedorRN.excluir(fornecedor);
-		
-		//recarrega a lista para não conter o fornecedor excluído
-		listFornecedor = fornecedorRN.listar();
+
+	public void excluir(Fornecedor fornecedor) {
+		try {
+			// exclui o fornecedor
+			fornecedorRN.excluir(fornecedor);
+			JSFUtil.adicionarMensagemSucesso("Fornecedor exclu�do com sucesso. ");
+			// recarrega a lista para não conter o fornecedor excluído
+			listFornecedor = fornecedorRN.listar();
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir fornecedor. ");
+		}
+
 	}
-	
+
 	public List<Fornecedor> getListFornecedor() {
 		if (listFornecedor == null) {
 			listFornecedor = fornecedorRN.listar();
 		}
-		
+
 		return listFornecedor;
 	}
 

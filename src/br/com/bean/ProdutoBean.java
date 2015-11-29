@@ -10,6 +10,7 @@ import br.com.model.Fornecedor;
 import br.com.model.Produto;
 import br.com.regranegocio.FornecedorRN;
 import br.com.regranegocio.ProdutoRN;
+import br.com.util.JSFUtil;
 
 @ManagedBean
 @RequestScoped
@@ -19,50 +20,60 @@ public class ProdutoBean {
 	private List<Produto> listProduto;
 	private List<Produto> produtosFiltrados;
 	private List<Fornecedor> listFornecedor;
-	
-	@ManagedProperty(name="produtoRN", value="#{produtoRN}")
+
+	@ManagedProperty(name = "produtoRN", value = "#{produtoRN}")
 	private ProdutoRN produtoRN;
-	
-	@ManagedProperty(name="fornecedorRN", value="#{fornecedorRN}")
-	private FornecedorRN fornecedorRN; 
-	
+
+	@ManagedProperty(name = "fornecedorRN", value = "#{fornecedorRN}")
+	private FornecedorRN fornecedorRN;
+
 	/**
 	 * Inseri ou altera produto
+	 * 
 	 * @return
 	 */
 	public String salvar() {
-		Fornecedor fornecedor = fornecedorRN.consultarPorId(Integer.parseInt(idFornecedor));
-		
-		produto.setFornecedor(fornecedor);
-		produtoRN.salvar(produto);
-		
-		// recarrega lista de produtos
-		listProduto = produtoRN.listar();
-		
-		return "/produto/listar?faces-redirect=true";
+		try {
+			Fornecedor fornecedor = fornecedorRN.consultarPorId(Integer.parseInt(idFornecedor));
+
+			produto.setFornecedor(fornecedor);
+			produtoRN.salvar(produto);
+
+			// recarrega lista de produtos
+			listProduto = produtoRN.listar();
+			JSFUtil.adicionarMensagemSucesso("Produto cadastrado com sucesso. ");
+			return "/produto/listar?faces-redirect=true";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar produto. ");
+			return "/produto/cadastrar?faces-redirect=true";
+		}
 	}
-	
+
 	/**
 	 * Exclui o registro
 	 */
 	public void excluir(Produto produto) {
-		produtoRN.excluir(produto);
-		
-		//consulta novamente para atualizar a listagem
-		listProduto = produtoRN.listar();
+		try {
+			produtoRN.excluir(produto);
+			JSFUtil.adicionarMensagemSucesso("Produto exclu�do com sucesso. ");
+			// consulta novamente para atualizar a listagem
+			listProduto = produtoRN.listar();
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir produto. ");
+		}
 	}
-	
+
 	public String exibirAlterar() {
 		this.idFornecedor = produto.getFornecedor().getId().toString();
-		
+
 		return "/produto/cadastrar";
 	}
-	
+
 	public void inativar() {
 		produtoRN.inativar(produto);
 	}
-	
-	//métodos de acesso
+
+	// métodos de acesso
 	public Produto getProduto() {
 		return produto;
 	}
@@ -76,9 +87,9 @@ public class ProdutoBean {
 	}
 
 	public List<Produto> getListProduto() {
-		if (listProduto!=null) {
+		if (listProduto != null) {
 			return listProduto;
-		}else{
+		} else {
 			listProduto = produtoRN.listar();
 			return listProduto;
 		}

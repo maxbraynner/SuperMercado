@@ -53,7 +53,7 @@
 				</p:commandButton>
 				
 				<p:commandButton action="#{clienteBean.excluir}" style="margin-left: 10px"
-					icon="ui-icon-trash" update=":formTabela"
+					icon="ui-icon-trash" update=":formTabela :msgmGlobal"
 					onclick="if (!confirm('Confirma a exclusão do cliente #{cliente.nome}?')) return false;">
 					<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
 				</p:commandButton>

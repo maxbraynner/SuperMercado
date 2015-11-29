@@ -11,6 +11,7 @@ import br.com.model.Endereco;
 import br.com.model.Funcionario;
 import br.com.regranegocio.CargoRN;
 import br.com.regranegocio.FuncionarioRN;
+import br.com.util.JSFUtil;
 
 @ManagedBean(name = "funcionarioBean")
 @RequestScoped
@@ -19,45 +20,60 @@ public class FuncionarioBean {
 	private Endereco endereco = new Endereco();
 	private Cargo cargo = new Cargo();
 	private List<Cargo> listCargo;
-	
+
 	private List<Funcionario> funcionariosFiltrados;
 	private List<Funcionario> listaFuncionarios;
-	
-	@ManagedProperty(name="funcionarioRN", value="#{funcionarioRN}")
+
+	@ManagedProperty(name = "funcionarioRN", value = "#{funcionarioRN}")
 	private FuncionarioRN funcionarioRN;
-	
-	@ManagedProperty(name = "cargoRN", value="#{cargoRN}")
+
+	@ManagedProperty(name = "cargoRN", value = "#{cargoRN}")
 	private CargoRN cargoRN;
 
 	public String salvar() throws InstantiationException, IllegalAccessException {
-		// consulta o cargo que será inserido
-		cargo = cargoRN.consultarPorId(cargo.getId());
+		try {
+			// consulta o cargo que será inserido
+			cargo = cargoRN.consultarPorId(cargo.getId());
 
-		funcionario.setCargo(cargo);
-		funcionario.setEndereco(endereco);
-		
-		funcionarioRN.salvar(funcionario);
-		
-		return "/funcionario/listar";
+			funcionario.setCargo(cargo);
+			funcionario.setEndereco(endereco);
+
+			funcionarioRN.salvar(funcionario);
+			JSFUtil.adicionarMensagemSucesso("Funcionario cadastrado com sucesso. ");
+			return "/funcionario/listar";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar funcion�rio. ");
+			return "/funcionario/cadastrar";
+		}
+
 	}
-	
+
 	// Edição de funcionario
 	public String editar() throws InstantiationException, IllegalAccessException {
-		/*
-		 * O endereco é novamente instanciado para possibilitar a exibição
-		 * em tela
-		 */
-		this.setEndereco(getFuncionario().getEndereco());
-		this.setCargo(funcionario.getCargo());
-		
-		return "/funcionario/cadastrar";
+		try {
+			/*
+			 * O endereco é novamente instanciado para possibilitar a
+			 * exibição em tela
+			 */
+			this.setEndereco(getFuncionario().getEndereco());
+			this.setCargo(funcionario.getCargo());
+			return "/funcionario/cadastrar";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentrar editar funcion�rio. ");
+			return "/funcionario/listar";
+		}
+
 	}
 
 	// Exclusão do funcionario
 	public String excluir() throws InstantiationException, IllegalAccessException {
-		funcionarioRN.excluir(funcionario);
-		
-		return "/funcionario/listar?faces-redirect=true";
+		try {
+			funcionarioRN.excluir(funcionario);
+			JSFUtil.adicionarMensagemSucesso("Funcion�rio exclu�do com sucesso. s");
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir funcion�rio. ");
+		}
+		return "/funcionario/listar";
 	}
 
 	// Lista de todos os funcionarios cadastrados
