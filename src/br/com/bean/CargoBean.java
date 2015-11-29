@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 
 import br.com.model.Cargo;
 import br.com.regranegocio.CargoRN;
+import br.com.util.JSFUtil;
 
 @ManagedBean
 public class CargoBean {
@@ -19,15 +20,27 @@ public class CargoBean {
 	private CargoRN cargoRN;
 
 	public String salvar() {
-		cargoRN.salvar(cargo);
-		
-		return "/cargo/listar?faces-redirect=true";
+		try {
+			cargoRN.salvar(cargo);
+
+			JSFUtil.adicionarMensagemSucesso("Cargo cadastrado com sucesso. ");
+			return "/cargo/listar?faces-redirect=true";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar cargo. ");
+			return "/cargo/cadastrar";
+		}
 	}
 	
 	public String excluir(Cargo cargo) {
-		cargoRN.excluir(cargo);
-		
-		return "/cargo/listar?faces-redirect=true";
+		try {
+			cargoRN.excluir(cargo);
+			
+			JSFUtil.adicionarMensagemSucesso("Cargo excluído com sucesso. ");
+			return "/cargo/listar?faces-redirect=true";
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir cargo. ");
+			return "/cargo/listar";
+		}
 	}
 	
 	public Cargo getCargo() {
