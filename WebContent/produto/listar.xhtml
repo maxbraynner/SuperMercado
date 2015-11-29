@@ -17,7 +17,8 @@
 				value="#{produtoBean.listProduto}"
 				emptyMessage="Não há produto cadastrado"
 				filteredValue="#{produtoBean.produtosFiltrados}" paginator="true"
-				rows="20">
+				rows="20"
+				rowStyleClass="#{produto.quantidadeMinimaEstoque >= produto.quantidadeEstoque ? 'acabando' : null}">
 
 				<f:facet name="header">
 					<h:outputText value="Listagem de Produtos" />
@@ -48,12 +49,6 @@
 					headerText="Quantidade/Mínima">
 					<h:outputText
 						value="#{produto.quantidadeEstoque} / #{produto.quantidadeMinimaEstoque}" />
-				</p:column>
-
-				<p:column headerText="Status do produto">
-					<h:outputText
-						rendered="#{produto.quantidadeMinimaEstoque >= produto.quantidadeEstoque}"
-						value="Produtoa cabando" style="color:red;"/>
 				</p:column>
 				<p:column filterBy="#{produto.fornecedor.nome}"
 					sortBy="#{produto.fornecedor.nome}" headerText="Fornecedor">
@@ -95,6 +90,5 @@
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
