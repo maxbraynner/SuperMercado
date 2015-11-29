@@ -1,5 +1,6 @@
 package br.com.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +43,17 @@ public class Funcionario extends Pessoa {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "funcionario")
 	private Set<Venda> vendas = new HashSet<Venda>(0);
 	
+	@Column(name = "data_contratacao", nullable = false, updatable = false)
+	private Date dataContratacao;
+	
+	public Date getDataContratacao() {
+		return dataContratacao;
+	}
+
+	public void setDataContratacao(Date dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
