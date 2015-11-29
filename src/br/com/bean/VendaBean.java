@@ -1,6 +1,7 @@
 package br.com.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -80,10 +81,25 @@ public class VendaBean {
 		this.setTotalVenda(this.totalVenda - produto.getValor());
 	}
 	
+	/**
+	 * A sessão em que a venda está é finalizada.
+	 */
 	public void cancelarVenda() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("vendaBean");  
 	}
 	
+	/**
+	 * A inserção de produtos na lista de produtos é finalizada.
+	 * Os atributos de venda são instanciados e o pagamento é iniciado.
+	 */
+	public String iniciarPagamento() {
+		this.getVenda().setDataVenda((new Date(System.currentTimeMillis())));
+		this.getVenda().setProdutos(this.getListProduto());
+		this.getVenda().setValor(this.getTotalVenda());
+		return "/venda/realizarPagamento";
+	}
+	
+	// métodos de acesso
 	public Venda getVenda() {
 		return venda;
 	}

@@ -13,8 +13,20 @@
 	
 	<ui:define name="conteudo">
 	
-	<h:form id="">
+	<h:form id="pagamento">
 		<p:messages />
+		<p:panelGrid columns="2" styleClass="semBorda">
+			<p:outputLabel value="TIPO DE PAGAMENTO: " />
+        	<p:selectOneMenu id="pagamento" value="#{pagamentoBean.tipoPagamento}">
+          	  <f:selectItem itemLabel="-- Selecionar --" itemValue="" />
+           	 <f:selectItems value="#{pagamentoBean.listaPagamentos}" />
+        	</p:selectOneMenu>
+        	
+        	<p:commandButton value="Realizar Pagamento"/>
+        </p:panelGrid>
+	</h:form>
+	
+	<h:form>
 		
 	</h:form>
 </ui:define> 

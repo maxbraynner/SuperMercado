@@ -1,9 +1,9 @@
 package br.com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,7 +50,7 @@ public class Venda implements Serializable {
 	joinColumns = { @JoinColumn(name = "id_venda", nullable = false,  
 	updatable = false) }, inverseJoinColumns = {  
 	@JoinColumn(name = "id_produto", nullable = false, updatable = false) }) 
-	private Set<Produto> produtos = new HashSet<Produto>();
+	private List<Produto> produtos = new ArrayList<Produto>();
 
 	public Date getDataVenda() {
 		return dataVenda;
@@ -84,11 +84,11 @@ public class Venda implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Set<Produto> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(Set<Produto> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

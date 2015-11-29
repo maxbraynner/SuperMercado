@@ -27,6 +27,7 @@
 		</h:form>
 
 		<h:form id="listaProdutos">
+			<h:inputHidden value="#{vendaBean.venda.id}" />
 			<p:dataTable id="tabela" var="produto"
 				value="#{vendaBean.listProduto}"
 				emptyMessage="Não há produtos no carrinho">
@@ -75,7 +76,8 @@
 			</h:panelGrid>
 			<br />
 			<br />
-			<p:commandButton value="Pagamento" style="height:50px" />
+			<p:commandButton value="Pagamento"
+				action="#{vendaBean.iniciarPagamento}" style="height:50px" />
 
 			<p:commandButton value="Cancelar venda"
 				action="#{vendaBean.cancelarVenda}" update=":listaProdutos"
