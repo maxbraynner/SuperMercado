@@ -8,6 +8,6 @@
 	http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
 	<import resource="DataSource.xml"/>
-	<context:component-scan base-package="br.com.dao, br.com.regranegocio, br.com.bean"/>
+	<context:component-scan base-package="br.com.dao, br.com.regranegocio, br.com.regranegocio"/>
 	
 </beans>
