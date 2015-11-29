@@ -37,4 +37,12 @@ private FuncionarioDAO funcionarioDAO;
 	public void excluir(Funcionario funcionario){
 		funcionarioDAO.remover(funcionario);
 	}
+	
+	public List<Funcionario> consultarGerentes() {
+		return funcionarioDAO.consultarGerentes();
+	}
+	
+	public Funcionario consularPorId(Integer id) {
+		return funcionarioDAO.consultarPorID(id);
+	}
 }
