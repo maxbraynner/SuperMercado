@@ -1,5 +1,9 @@
 @CHARSET "ISO-8859-1";
 
+* {
+	font-family: Arial;
+}
+
 .ui-layout-north {
 	z-index: 20 !important;
 	overflow: visible !important;;
@@ -9,15 +13,25 @@
 	overflow: visible !important;
 }
 
-.ui-widget,.ui-widget .ui-widget{
+.ui-widget, .ui-widget .ui-widget {
 	font-size: 12px !important;
 }
 
-div#cabecalho{
+div#cabecalho {
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
 
-.semBorda tr, .semBorda td {  
-    border: none !important;  
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+
+.btt {
+	margin-left: 10px;
+}
+
+.footer {
+	font-style: italic;
+	text-align: center; 
+	width: 100%;
 }

@@ -14,6 +14,7 @@
 	<ui:define name="conteudo">
 
 		<h:form id="cadastro">
+			<p:messages id="messages" />
 			<h:inputHidden value="#{funcionarioBean.funcionario.id}" />
 
 			<p:fieldset legend="Informações do Funcionário">
@@ -67,9 +68,29 @@
 
 					<p:outputLabel value="Celular:" for="celular" />
 					<p:inputMask id="celular" label="Celular" mask="(99)99999-9999"
-						value="#{funcionarioBean.funcionario.celular}" size="20" required="true" />
+						value="#{funcionarioBean.funcionario.celular}" size="20"
+						required="true" />
+
+					<p:outputLabel value="Data de Contratação:" for="dataContratacao" />
+					<p:inputMask id="dataContratacao" label="Contratacao"
+						mask="99/99/9999"
+						value="#{funcionarioBean.funcionario.dataContratacao}"
+						required="true" size="25" maxlength="25">
+						<f:convertDateTime dateStyle="medium" />
+					</p:inputMask>
+
+					<p:outputLabel for="cargo" value="Cargo" />
+					<p:selectOneMenu id="cargo" value="#{funcionarioBean.cargo.id}"
+						required="true">
+						<f:selectItem itemLabel="Selecione um Cargo"
+							noSelectionOption="true" />
+						<f:selectItems value="#{funcionarioBean.listCargo}" var="cargo"
+							itemLabel="#{cargo.nome}" itemValue="#{cargo.id}" />
+					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:fieldset>
+			<br />
+
 			<!-- Cadastro do endereço -->
 			<p:fieldset legend="Endereço">
 				<h:panelGrid columns="2">
@@ -106,34 +127,8 @@
 						quired="false" />
 				</h:panelGrid>
 			</p:fieldset>
+			<br />
 
-			<!-- Cadastro cargo -->
-			<p:fieldset legend="Cargo">
-				<h:panelGrid columns="2">
-					<p:outputLabel value="Data de Contratação:" for="dataContratacao" />
-					<p:inputMask id="dataContratacao" label="Contratacao" mask="99/99/9999"
-						value="#{funcionarioBean.cargo.dataContratacao}" required="true"
-						size="25" maxlength="25">
-						<f:convertDateTime dateStyle="medium" />
-					</p:inputMask>
-
-
-					<p:outputLabel value="Nome:" for="nomeCargo" />
-					<p:inputText id="nomeCargo" label="Nome"
-						value="#{funcionarioBean.cargo.nome}" required="true"
-						maxlength="120" />
-
-					<p:outputLabel value="Salário: " for="salario" />
-					<p:inputText id="salario" label="Salário"
-						value="#{funcionarioBean.cargo.salario}" required="true" size="10"
-						maxlength="10"/>
-
-					<p:outputLabel value="Setor:" for="setor" />
-					<p:inputText id="setor" label="Setor"
-						value="#{funcionarioBean.cargo.setor}" required="true" />
-				</h:panelGrid>
-			</p:fieldset>
-			
 			<p:commandButton value="Resetar" type="reset" />
 			<p:commandButton action="#{funcionarioBean.salvar}" value="Salvar" />
 		</h:form>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form id="cadastro">
+			<p:messages id="messages" />
+			<h:inputHidden value="#{cargoBean.cargo.id}" />
+
+			<p:fieldset legend="Cargo">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome:" for="nomeCargo" />
+					<p:inputText id="nomeCargo" label="Nome"
+						value="#{cargoBean.cargo.nome}" required="true" maxlength="120" />
+
+					<p:outputLabel for="salario" value="Salário" />
+					<p:inputText size="20" id="salario" required="true"
+						value="#{cargoBean.cargo.salario}">
+						<f:convertNumber pattern="#,##0.00" minFractionDigits="2"/>
+						<p:ajax update="messages" event="change" />
+					</p:inputText>
+
+					<p:outputLabel value="Setor:" for="setor" />
+					<p:inputText id="setor" label="Setor"
+						value="#{cargoBean.cargo.setor}" required="true" />
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+
+			<p:commandButton value="Resetar" type="reset" />
+			<p:commandButton action="#{cargoBean.salvar}" value="Salvar"
+				styleClass="btt" />
+		</h:form>
+	</ui:define>
+</ui:composition>

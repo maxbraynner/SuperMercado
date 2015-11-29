@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/templatePrincipal.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/menu/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formTabela">
+			<p:dataTable id="tabela" var="cargo" value="#{cargoBean.listCargo}"
+				emptyMessage="não há cargo cadastrado"
+				filteredValue="#{cargoBean.listCargoFiltro}" paginator="true"
+				rows="20">
+
+				<f:facet name="header">
+					<h:outputText value="Listagem de cargos" />
+				</f:facet>
+
+				<p:column filterBy="#{cargo.id}" headerText="Id"
+					sortBy="#{cargo.id}">
+					<h:outputText value="#{cargo.id}" />
+				</p:column>
+
+				<p:column filterBy="#{cargo.nome}" sortBy="#{cargo.nome}"
+					headerText="Nome">
+					<h:outputText value="#{cargo.nome}" />
+				</p:column>
+
+				<p:column filterBy="#{cargo.salario}" sortBy="#{cargo.salario}"
+					headerText="Salário">
+					<h:outputText value="#{cargo.salario}">
+						<f:convertNumber pattern="#,##0.00" type="currency"
+							currencySymbol="R$" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:commandButton action="/cargo/cadastrar" ajax="false"
+						icon="ui-icon-pencil">
+						<f:setPropertyActionListener value="#{cargo}"
+							target="#{cargoBean.cargo}" />
+					</p:commandButton>
+
+					<p:commandButton styleClass="btt" icon="ui-icon-trash"
+						actionListener="#{cargoBean.excluir(cargo)}" update="tabela">
+						<p:confirm header="Confirmation"
+							message="Deseja realmente excluir?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+		<h:form>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
