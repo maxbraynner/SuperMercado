@@ -13,53 +13,47 @@
 
 	<ui:define name="conteudo">
 		<h:form id="cadastro">
-			<p:messages id="messages" />
 
 			<p:fieldset legend="Dados Produto">
 				<h:inputHidden value="#{produtoBean.produto.id}" />
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Título" for="titulo" />
 					<p:inputText id="titulo" required="true"
-						value="#{produtoBean.produto.titulo}">
-						<p:ajax update="messages" event="blur" />
+						value="#{produtoBean.produto.titulo}"
+						requiredMessage="Informe o produto. ">
 					</p:inputText>
 
 					<p:outputLabel value="Marca" for="marca" />
 					<p:inputText id="marca" required="true" size="40"
-						value="#{produtoBean.produto.marca}">
-						<p:ajax update="messages" event="blur" />
+						value="#{produtoBean.produto.marca}" requiredMessage="Informe a marca. ">
 					</p:inputText>
 
 					<p:outputLabel value="Categoria" for="categoria" />
 					<p:inputMask id="categoria" required="true"
-						value="#{produtoBean.produto.categoria}">
-						<p:ajax update="messages" event="blur" />
+						value="#{produtoBean.produto.categoria}" requiredMessage="Informe categoria. ">
 					</p:inputMask>
 
 					<p:outputLabel for="valor" value="Valor" />
 					<p:inputText maxlength="15" size="20" id="valor" required="true"
 						min="0" value="#{produtoBean.produto.valor}"
-						requiredMessage="Preencha este campo com o valor do Produto">
+						requiredMessage="Informe o valor. ">
 						<f:convertNumber pattern="#,##0.00" type="currency"
 							currencySymbol="R$" />
-						<p:ajax update="messages" process="valor" event="change" />
 					</p:inputText>
 
 					<p:outputLabel value="Quantidade" for="quantidade" />
 					<p:spinner id="quantidade" required="true" min="0"
-						value="#{produtoBean.produto.quantidadeEstoque}">
-						<p:ajax update="messages" event="blur" />
+						value="#{produtoBean.produto.quantidadeEstoque}" requiredMessage="Informe a quantidade. ">
 					</p:spinner>
 
 					<p:outputLabel value="Mínimo no Estoque" for="quantidadeMinima" />
 					<p:spinner id="quantidadeMinima" required="true" min="0"
-						value="#{produtoBean.produto.quantidadeMinimaEstoque}">
-						<p:ajax update="messages" event="blur" />
+						value="#{produtoBean.produto.quantidadeMinimaEstoque}" requiredMessage="Informe quantidade minima. ">
 					</p:spinner>
 
 					<p:outputLabel for="fornecedor" value="Fornecedor" />
 					<p:selectOneMenu id="fornecedor"
-						value="#{produtoBean.idFornecedor}" required="true">
+						value="#{produtoBean.idFornecedor}" required="true" requiredMessage="Informe o fornecedor.">
 						<f:selectItem itemLabel="Selecione um Fornecedor"
 							noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.listFornecedor}"
@@ -74,7 +68,7 @@
 
 			<br />
 			<p:commandButton value="Resetar" type="reset" />
-			<p:commandButton action="#{produtoBean.salvar}" value="Salvar"
+			<p:commandButton action="#{produtoBean.salvar}" value="Salvar" update=":msgmGlobal"
 				type="submit" />
 		</h:form>
 	</ui:define>

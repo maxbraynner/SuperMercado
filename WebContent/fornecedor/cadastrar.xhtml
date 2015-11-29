@@ -13,47 +13,42 @@
 
 	<ui:define name="conteudo">
 		<h:form id="cadastro">
-			<p:messages id="messages" />
-
+		
 			<p:fieldset legend="Dados Fornecedor">
 				<h:inputHidden value="#{fornecedorBean.fornecedor.id}" />
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" required="true"
-						value="#{fornecedorBean.fornecedor.nome}">
-						<p:ajax update="messages" event="blur" />
+						value="#{fornecedorBean.fornecedor.nome}" requiredMessage="Informe o nome. ">
 					</p:inputText>
 
 					<p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
 					<p:inputText id="nomeFantasia" required="true" size="40"
-						value="#{fornecedorBean.fornecedor.nomeFantasia}">
-						<p:ajax update="messages" event="blur" />
+						value="#{fornecedorBean.fornecedor.nomeFantasia}" requiredMessage="Informe o nome fantasia. ">
 					</p:inputText>
 
 					<p:outputLabel value="CNPJ" for="cnpj" />
 					<p:inputMask id="cnpj" required="true"
 						value="#{fornecedorBean.fornecedor.CNPJ}"
-						mask="99.999.999/9999-99">
-						<p:ajax update="messages" event="blur" />
+						mask="99.999.999/9999-99" requiredMessage="Informe o CNPJ. ">
 					</p:inputMask>
 
 					<p:outputLabel value="E-Mail" for="email" />
 					<p:inputText id="email" required="true"
 						validatorMessage="E-Mail inválido"
-						value="#{fornecedorBean.fornecedor.email}">
+						value="#{fornecedorBean.fornecedor.email}" requiredMessage="Informe o e-mail. ">
 						<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_.]+" />
-						<p:ajax update="messages" event="blur" />
 					</p:inputText>
 
 					<p:outputLabel value="Telefone" for="telefone" />
 					<p:inputMask id="telefone" required="true"
-						value="#{fornecedorBean.fornecedor.telefone}" mask="(99)9999-9999" />
+						value="#{fornecedorBean.fornecedor.telefone}" mask="(99)9999-9999" requiredMessage="Informe o telefone. "/>
 				</h:panelGrid>
 			</p:fieldset>
 
 			<br />
 			<p:commandButton value="Resetar" type="reset" />
-			<p:commandButton value="Confirmar" action="#{fornecedorBean.salvar}" />
+			<p:commandButton value="Confirmar" action="#{fornecedorBean.salvar}" update=":msgmGlobal"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

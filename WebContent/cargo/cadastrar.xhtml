@@ -12,33 +12,30 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
 		<h:form id="cadastro">
-			<p:messages id="messages" />
 			<h:inputHidden value="#{cargoBean.cargo.id}" />
 
 			<p:fieldset legend="Cargo">
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nome:" for="nomeCargo" />
 					<p:inputText id="nomeCargo" label="Nome"
-						value="#{cargoBean.cargo.nome}" required="true" maxlength="120" />
+						value="#{cargoBean.cargo.nome}" required="true" maxlength="120" requiredMessage="Informe o nome. "/>
 
 					<p:outputLabel for="salario" value="Salário" />
 					<p:inputText size="20" id="salario" required="true"
-						value="#{cargoBean.cargo.salario}">
+						value="#{cargoBean.cargo.salario}" requiredMessage="Informe o salário. ">
 						<f:convertNumber pattern="#,##0.00" minFractionDigits="2"/>
-						<p:ajax update="messages" event="change" />
 					</p:inputText>
 
 					<p:outputLabel value="Setor:" for="setor" />
 					<p:inputText id="setor" label="Setor"
-						value="#{cargoBean.cargo.setor}" required="true" />
+						value="#{cargoBean.cargo.setor}" required="true" requiredMessage="Informe o setor. "/>
 				</h:panelGrid>
 			</p:fieldset>
 			<br />
 
 			<p:commandButton value="Resetar" type="reset" />
-			<p:commandButton action="#{cargoBean.salvar}" value="Salvar"
+			<p:commandButton action="#{cargoBean.salvar}" value="Salvar" update=":msgmGlobal"
 				styleClass="btt" />
 		</h:form>
 	</ui:define>
