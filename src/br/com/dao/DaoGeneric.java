@@ -45,5 +45,8 @@ public abstract class DaoGeneric<T> implements Dao<T> {
 	public List<T> listar() {
 		return this.sessionFactory.getCurrentSession().createCriteria(clas).list();
 	}
-	
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 }
