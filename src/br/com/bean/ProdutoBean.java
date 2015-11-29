@@ -2,11 +2,9 @@ package br.com.bean;
 
 import java.util.List;
 
-
 import javax.faces.bean.ManagedBean;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import br.com.model.Fornecedor;
 import br.com.model.Produto;
@@ -14,7 +12,7 @@ import br.com.regranegocio.FornecedorRN;
 import br.com.regranegocio.ProdutoRN;
 
 @ManagedBean
-@Scope("request")
+@RequestScoped
 public class ProdutoBean {
 	private Produto produto = new Produto();
 	private String idFornecedor;
@@ -22,10 +20,10 @@ public class ProdutoBean {
 	private List<Produto> produtosFiltrados;
 	private List<Fornecedor> listFornecedor;
 	
-	@Autowired
+	@ManagedProperty(name="produtoRN", value="#{produtoRN}")
 	private ProdutoRN produtoRN;
 	
-	@Autowired
+	@ManagedProperty(name="fornecedorRN", value="#{fornecedorRN}")
 	private FornecedorRN fornecedorRN; 
 	
 	/**
