@@ -33,10 +33,10 @@ public class ClienteBean {
 			cliente.setEndereco(endereco);
 			clienteRN.salvar(cliente);
 			JSFUtil.adicionarMensagemSucesso("Cliente cadastrado com sucesso. ");
-			return "/cliente/listar";
+			return "/cliente/listar?faces-redirect=true";
 		} catch (Exception e) {
 			JSFUtil.adicionarMensagemErro("Erro ao tentar cadastrar cliente. ");
-			return "/cliente/cadastrar";
+			return "/cliente/cadastrar?faces-redirect=true";
 		}
 	}
 
@@ -51,7 +51,7 @@ public class ClienteBean {
 			return "/cliente/cadastrar";
 		} catch (Exception e) {
 			JSFUtil.adicionarMensagemErro("Erro ao tentar editar cliente. ");
-			return "/cliente/listar";
+			return "/cliente/listar?faces-redirect=true";
 		}
 
 	}
