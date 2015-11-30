@@ -51,6 +51,16 @@ public class Venda implements Serializable {
 	updatable = false) }, inverseJoinColumns = {  
 	@JoinColumn(name = "id_produto", nullable = false, updatable = false) }) 
 	private List<Produto> produtos = new ArrayList<Produto>();
+	
+	private TipoPagamento tipoPagamento;
+	
+	public TipoPagamento getTipoPagamento() {
+		return tipoPagamento;
+	}
+
+	public void setTipoPagamento(TipoPagamento tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
+	}
 
 	public Date getDataVenda() {
 		return dataVenda;
