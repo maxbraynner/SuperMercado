@@ -14,8 +14,20 @@
 	<ui:define name="conteudo">
 
 		<h:form id="busca">
-			<p:messages />
 			<p:panelGrid columns="2" styleClass="semBorda">
+				<h:outputLabel value="CPF do Cliente:" for="cpf" />
+				<p:inputMask id="cpf" label="CPF"
+					value="#{vendaBean.venda.cliente.cpf}" size="20" maxlength="30"
+					required="true" requiredMessage="Informe o CPF"
+					mask="999.999.999-99">
+					<f:validateLength minimum="1" maximum="15" />
+					<p:ajax event="blur" listener="#{vendaBean.consultaCliente}" update="cliente"/>
+				</p:inputMask>
+
+				<h:outputLabel value="Cliente:" for="cliente" />
+				<h:outputText id="cliente"
+					value="#{vendaBean.venda.cliente.nome} #{vendaBean.venda.cliente.sobrenome}" />
+
 				<p:outputLabel value="Código do produto: " for="busca" />
 				<p:inputText required="true" value="#{vendaBean.produtoId}"
 					maxlength="10" size="5" />
