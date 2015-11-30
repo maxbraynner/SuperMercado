@@ -11,10 +11,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.model.Cliente;
+import br.com.model.Funcionario;
 import br.com.model.Produto;
 import br.com.model.TipoPagamento;
 import br.com.model.Venda;
 import br.com.regranegocio.ClienteRN;
+import br.com.regranegocio.FuncionarioRN;
 import br.com.regranegocio.ProdutoRN;
 import br.com.regranegocio.VendaRN;
 import br.com.util.JSFUtil;
@@ -30,13 +32,16 @@ public class VendaBean {
 	private List<TipoPagamento> listTipoPagamento;
 
 	@ManagedProperty(name = "vendaRN", value = "#{vendaRN}")
-	private VendaRN vendaRN;;
+	private VendaRN vendaRN;
 
 	@ManagedProperty(name = "produtoRN", value = "#{produtoRN}")
 	private ProdutoRN produtoRN;
 
 	@ManagedProperty(name = "clienteRN", value = "#{clienteRN}")
 	private ClienteRN clienteRN;
+	
+	@ManagedProperty(name = "funcionarioRN", value = "#{funcionarioRN}")
+	private FuncionarioRN funcionarioRN;
 
 	@PostConstruct
 	public void init() {
@@ -153,6 +158,9 @@ public class VendaBean {
 	public String realizarPagamento() {
 		try {
 
+			Funcionario funcionario = funcionarioRN.consularPorId(3);
+			
+			venda.setFuncionario(funcionario);
 			vendaRN.realizarVenda(venda);
 
 			// limpa sessão
@@ -240,4 +248,13 @@ public class VendaBean {
 		this.clienteRN = clienteRN;
 	}
 
+	public FuncionarioRN getFuncionarioRN() {
+		return funcionarioRN;
+	}
+
+	public void setFuncionarioRN(FuncionarioRN funcionarioRN) {
+		this.funcionarioRN = funcionarioRN;
+	}
+
+	
 }
