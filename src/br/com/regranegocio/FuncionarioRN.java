@@ -45,4 +45,8 @@ private FuncionarioDAO funcionarioDAO;
 	public Funcionario consularPorId(Integer id) {
 		return funcionarioDAO.consultarPorID(id);
 	}
+	
+	public List<Funcionario> funcinarioLogin(String Matricula, String Senha){
+		return funcionarioDAO.consultarFuncionarioLogin(Matricula, Senha);
+	}
 }

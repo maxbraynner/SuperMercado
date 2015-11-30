@@ -21,6 +21,9 @@ public class Funcionario extends Pessoa {
 
 	@Column(unique = true, nullable = false)
 	private String matricula;
+	
+	@Column(name="password", nullable=false, unique=false)
+    private String senha;
 
 	@ManyToOne
 	private Funcionario gerente;
@@ -51,6 +54,14 @@ public class Funcionario extends Pessoa {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+	
+	public String getSenha() { 
+		return senha; 
+	} 
+	
+	public void setSenha(String senha) { 
+		this.senha = senha; 
 	}
 
 	public Set<Venda> getVendas() {

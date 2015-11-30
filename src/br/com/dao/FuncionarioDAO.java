@@ -2,6 +2,8 @@ package br.com.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -27,5 +29,13 @@ public class FuncionarioDAO extends DaoGeneric<Funcionario> {
 		criteria.add(Restrictions.like("cargo.nome", "Gerente"));
 		
 		return criteria.list();
+	}
+	
+	public List<Funcionario> consultarFuncionarioLogin(String Matricula, String Senha){
+		try{
+			return this.getSessionFactory().getCurrentSession().createSQLQuery("select * from supermercado.funcionario where funcionario.matricula = :matricula and funcionario.password = :senha").setParameter("matricula", Matricula).setParameter("senha", Senha).list();
+		}catch(NoResultException e){
+			return null;
+		}		
 	}
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+template="/templates/templatePrincipal.xhtml"> 
+
+
+<ui:define name="conteudo">
+	<h:body> 
+		<h:form> 
+			<p:messages id="messages" /> 
+			<p:fieldset legend="Efetuar Login Funcionário">
+			<center>
+				<p:panelGrid columns="2"> 
+					<p:outputLabel for="matricula" value="Matrícula:" /> 
+					<p:inputText id="matricula" value="#{LoginBean.funcionario.matricula}" /> 
+					
+					<p:outputLabel for="senha" value="Senha:" /> 
+					<p:password id="senha" value="#{LoginBean.funcionario.senha}" /> 
+				</p:panelGrid>
+				<br/>
+				<p:commandButton value="Login" icon="ui-icon-star" action="#{LoginBean.login}" ajax="false"></p:commandButton>
+			</center>
+			<br/>
+			</p:fieldset>
+			<br/>  
+		</h:form> 
+	</h:body> 
+</ui:define>
+</ui:composition>

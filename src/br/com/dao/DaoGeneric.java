@@ -1,6 +1,7 @@
 package br.com.dao;
 
 import java.util.List;
+import javax.persistence.NoResultException;
 
 import org.hibernate.SessionFactory;
 
@@ -45,7 +46,7 @@ public abstract class DaoGeneric<T> implements Dao<T> {
 	public List<T> listar() {
 		return this.sessionFactory.getCurrentSession().createCriteria(clas).list();
 	}
-
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

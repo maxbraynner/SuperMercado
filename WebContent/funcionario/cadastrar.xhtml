@@ -86,6 +86,14 @@
 						<f:selectItems value="#{funcionarioBean.listCargo}" var="cargo"
 							itemLabel="#{cargo.nome}" itemValue="#{cargo.id}" />
 					</p:selectOneMenu>
+					
+					<p:outputLabel value="Senha de Acesso" for="senha" />
+					<p:inputText id="senha" label="Senha"
+						value="#{funcionarioBean.funcionario.senha}" size="30"
+						maxlength="30" required="true"
+						requiredMessage="Informe a senha de acesso. ">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
 
 					<p:outputLabel for="gerente" value="Gerente" />
 					<p:selectOneMenu id="gerente" required="false"
