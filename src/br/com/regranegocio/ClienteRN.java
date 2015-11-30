@@ -40,5 +40,8 @@ public class ClienteRN {
 	public void excluir(Cliente cliente) {
 		clienteDAO.remover(cliente);
 	}
-
+	
+	public Cliente consultaPorCPF(String cpf) {
+		return clienteDAO.consultaPorCPF(cpf);
+	}
 }
