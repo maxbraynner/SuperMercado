@@ -10,24 +10,28 @@
 	<ui:define name="menu">
 		<ui:include src="/menu/menuPrincipal.xhtml" />
 	</ui:define>
-	
+
 	<ui:define name="conteudo">
-	
-	<h:form id="pagamento">
-		<p:messages />
-		<p:panelGrid columns="2" styleClass="semBorda">
-			<p:outputLabel value="TIPO DE PAGAMENTO: " />
-        	<p:selectOneMenu id="pagamento" value="#{pagamentoBean.tipoPagamento}">
-          	  <f:selectItem itemLabel="-- Selecionar --" itemValue="" />
-           	 <f:selectItems value="#{pagamentoBean.listaPagamentos}" />
-        	</p:selectOneMenu>
-        	
-        	<p:commandButton value="Realizar Pagamento"/>
-        </p:panelGrid>
-	</h:form>
-	
-	<h:form>
-		
-	</h:form>
-</ui:define> 
+
+		<h:form id="pagamento">
+			<p:messages />
+			<p:panelGrid columns="2" styleClass="semBorda">
+
+				<p:outputLabel for="city" value="Tipo do Pagamento" />
+				<p:selectOneRadio id="city" value="#{vendaBean.venda.tipoPagamento}"
+					layout="grid" columns="1">
+					<f:selectItems value="#{vendaBean.listTipoPagamento}"
+						var="tipoPagamento" itemLabel="#{tipoPagamento.descricao}"
+						itemValue="#{tipoPagamento}" />
+				</p:selectOneRadio>
+
+				<p:commandButton value="Realizar Pagamento"
+					action="#{vendaBean.realizarPagamento}" />
+			</p:panelGrid>
+		</h:form>
+
+		<h:form>
+
+		</h:form>
+	</ui:define>
 </ui:composition>
