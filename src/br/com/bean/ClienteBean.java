@@ -10,7 +10,6 @@ import br.com.model.Cliente;
 import br.com.model.Endereco;
 import br.com.regranegocio.ClienteRN;
 import br.com.util.JSFUtil;
-import jdk.nashorn.internal.scripts.JS;
 
 @ManagedBean(name = "clienteBean")
 @RequestScoped
@@ -60,7 +59,7 @@ public class ClienteBean {
 	public String excluir() throws InstantiationException, IllegalAccessException {
 		try {
 			clienteRN.excluir(cliente);
-			JSFUtil.adicionarMensagemSucesso("Cliente excluído com sucesso. ");
+			JSFUtil.adicionarMensagemSucesso("Cliente excluï¿½do com sucesso. ");
 		} catch (Exception e) {
 			JSFUtil.adicionarMensagemErro("Erro ao tentar excluir cliente. ");
 		}

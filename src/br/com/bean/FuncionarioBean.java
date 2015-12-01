@@ -49,7 +49,7 @@ public class FuncionarioBean {
 			if (funcionario.getGerente().getId() == null || funcionario.getGerente().getId() == 0) {
 				funcionario.setGerente(null);
 			}else {
-				Funcionario gerente = funcionarioRN.consularPorId(funcionario.getGerente().getId());
+				Funcionario gerente = funcionarioRN.consultarPorId(funcionario.getGerente().getId());
 				
 				// consulta o gerente completo, pois o objeto contem apenas o ID
 				funcionario.setGerente(gerente);

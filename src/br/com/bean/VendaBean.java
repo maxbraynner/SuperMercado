@@ -54,14 +54,19 @@ public class VendaBean {
 
 		// inicializa o cliente
 		venda.setCliente(new Cliente());
+		// inicializa o funcionario
+		venda.setFuncionario(new Funcionario());
 	}
-
+	
+	/**
+	 * Realiza a consulta de um cliente a parte do CPF dele.
+	 */
 	public void consultaCliente() {
 		try {
 			if (venda.getCliente().getCpf() != null && !venda.getCliente().getCpf().equals("___.___.___-__")) {
 				Cliente cliente = clienteRN.consultaPorCPF(venda.getCliente().getCpf());
 
-				if (cliente != null) {
+				if (cliente != null && cliente.isAtivo()) {
 					venda.setCliente(cliente);
 				}
 			} else {
@@ -70,6 +75,26 @@ public class VendaBean {
 		} catch (Exception e) {
 			JSFUtil.adicionarMensagemErro("Cliente não encontrado");
 			venda.setCliente(new Cliente());
+		}
+	}
+	
+	/**
+	 * Realiza uma consulta do funcionário a partir da sua matricula.
+	 */
+	public void consultaFuncionario() {
+		try {
+			if (venda.getFuncionario().getMatricula() != null) {
+				Funcionario funcionario = funcionarioRN.consultaPorMatricula(venda.getFuncionario().getMatricula());
+
+				if (funcionario != null && funcionario.isAtivo()) {
+					venda.setFuncionario(funcionario);
+				}
+			} else {
+				venda.setFuncionario(new Funcionario());
+			}
+		} catch (Exception e) {
+			JSFUtil.adicionarMensagemErro("Funcionário não encontrado");
+			venda.setFuncionario(new Funcionario());
 		}
 	}
 
@@ -131,7 +156,16 @@ public class VendaBean {
 	public void cancelarVenda() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("vendaBean");
 	}
-
+	
+	/**
+	 * Botão para possibilitar o cancelamento de um pagamento.
+	 * A sessão também é fechada.
+	 */
+	public String cancelarPagamento() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("vendaBean");
+		return "/venda/realizarVenda";
+	}
+	
 	/**
 	 * A inserção de produtos na lista de produtos é finalizada. Os atributos de
 	 * venda são instanciados e o pagamento é iniciado.
@@ -158,9 +192,6 @@ public class VendaBean {
 	public String realizarPagamento() {
 		try {
 
-			Funcionario funcionario = funcionarioRN.consularPorId(3);
-			
-			venda.setFuncionario(funcionario);
 			vendaRN.realizarVenda(venda);
 
 			// limpa sessão

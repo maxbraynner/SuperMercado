@@ -1,7 +1,6 @@
 package br.com.dao;
 
 import java.util.List;
-import javax.persistence.NoResultException;
 
 import org.hibernate.SessionFactory;
 

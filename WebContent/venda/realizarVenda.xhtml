@@ -27,7 +27,19 @@
 				<h:outputLabel value="Cliente:" for="cliente" />
 				<h:outputText id="cliente"
 					value="#{vendaBean.venda.cliente.nome} #{vendaBean.venda.cliente.sobrenome}" />
-
+				
+				<h:outputLabel value="Matricula do Funcionário:" for="matricula" />
+				<p:inputMask id="matricula" label="Matrícula"
+					value="#{vendaBean.venda.funcionario.matricula}" size="20" maxlength="30"
+					required="true" requiredMessage="Informe o CPF">
+					<f:validateLength minimum="1" maximum="15" />
+					<p:ajax event="blur" listener="#{vendaBean.consultaFuncionario}" update="funcionario"/>
+				</p:inputMask>
+				
+				<h:outputLabel value="Funcionário: " for="funcionario" />
+				<h:outputText id="funcionario"
+					value="#{vendaBean.venda.funcionario.nome} #{vendaBean.venda.funcionario.sobrenome}" />
+					
 				<p:outputLabel value="Código do produto: " for="busca" />
 				<p:inputText required="true" value="#{vendaBean.produtoId}"
 					maxlength="10" size="5" />

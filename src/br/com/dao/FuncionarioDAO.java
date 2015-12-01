@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,41 @@ public class FuncionarioDAO extends DaoGeneric<Funcionario> {
 		}catch(NoResultException e){
 			return null;
 		}		
+	}
+	
+	public Funcionario consultaPorCPF(String cpf) {
+		String consulta = " select funcionario.ativo, funcionario.matricula, pessoa.*"
+				+ " from supermercado.funcionario as funcionario"
+				+ " join supermercado.pessoa as pessoa on pessoa.id = funcionario.id "
+				+ " where pessoa.cpf = :cpf";
+		
+		SQLQuery sqlQuery = this.getSessionFactory().getCurrentSession().createSQLQuery(consulta);
+		sqlQuery.setParameter("cpf", cpf);
+		
+		Object[] result = (Object[]) sqlQuery.uniqueResult();
+		
+		Funcionario funcionario = new Funcionario();
+		
+		funcionario = consultarPorID(Integer.parseInt(result[2].toString()));
+		
+		return funcionario;
+	}
+	
+	public Funcionario consultaPorMatricula(String matricula) {
+		String consulta = " select funcionario.ativo, funcionario.matricula, pessoa.*"
+				+ " from supermercado.funcionario as funcionario"
+				+ " join supermercado.pessoa as pessoa on pessoa.id = funcionario.id "
+				+ " where funcionario.matricula = :matricula";
+		
+		SQLQuery sqlQuery = this.getSessionFactory().getCurrentSession().createSQLQuery(consulta);
+		sqlQuery.setParameter("matricula", matricula);
+		
+		Object[] result = (Object[]) sqlQuery.uniqueResult();
+		
+		Funcionario funcionario = new Funcionario();
+		
+		funcionario = consultarPorID(Integer.parseInt(result[2].toString()));
+		
+		return funcionario;
 	}
 }

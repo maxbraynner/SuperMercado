@@ -42,11 +42,19 @@ private FuncionarioDAO funcionarioDAO;
 		return funcionarioDAO.consultarGerentes();
 	}
 	
-	public Funcionario consularPorId(Integer id) {
+	public Funcionario consultarPorId(Integer id) {
 		return funcionarioDAO.consultarPorID(id);
 	}
 	
 	public List<Funcionario> funcinarioLogin(String Matricula, String Senha){
 		return funcionarioDAO.consultarFuncionarioLogin(Matricula, Senha);
+	}
+	
+	public Funcionario consultaPorCPF(String cpf) {
+		return funcionarioDAO.consultaPorCPF(cpf);
+	}
+	
+	public Funcionario consultaPorMatricula(String matricula) {
+		return funcionarioDAO.consultaPorMatricula(matricula);
 	}
 }
